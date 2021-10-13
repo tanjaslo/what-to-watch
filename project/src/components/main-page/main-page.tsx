@@ -2,9 +2,14 @@ import FilmCard from '../film-card/film-card';
 
 type MainPageProps = {
   filmsCount: number;
+  title: string;
+  genre: string;
+  year: number;
 }
 
-function MainPage({filmsCount}: MainPageProps): JSX.Element {
+function MainPage(props: MainPageProps): JSX.Element {
+  const {filmsCount, title, genre, year} = props;
+
   return (
     <body>
       <section className="film-card">
@@ -42,10 +47,10 @@ function MainPage({filmsCount}: MainPageProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{genre}</span>
+                <span className="film-card__year">{year}</span>
               </p>
 
               <div className="film-card__buttons">

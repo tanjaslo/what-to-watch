@@ -2,11 +2,19 @@ import MainPage from '../main-page/main-page';
 
 type AppScreenProps = {
   filmsCount: number;
+  title: string;
+  genre: string;
+  year: number;
 }
 
-function App({filmsCount}: AppScreenProps): JSX.Element {
+function App({filmsCount, title, genre, year}: AppScreenProps): JSX.Element {
   return (
-    <MainPage filmsCount={filmsCount} />
+    <MainPage
+      filmsCount={filmsCount}
+      title={title}
+      genre={genre}
+      year={year}
+    />
   );
 }
 
