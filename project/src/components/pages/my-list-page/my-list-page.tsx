@@ -1,4 +1,4 @@
-function MyList(): JSX.Element {
+function MyListPage(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -130,4 +130,4 @@ function MyList(): JSX.Element {
   );
 }
 
-export default MyList;
+export default MyListPage;
