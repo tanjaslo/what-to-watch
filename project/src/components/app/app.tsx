@@ -1,4 +1,6 @@
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import MainPage from '../pages/main-page/main-page';
+import UserPage from '../pages/user-page/user-page';
 
 type AppScreenProps = {
   filmsCount: number;
@@ -9,12 +11,21 @@ type AppScreenProps = {
 
 function App({filmsCount, title, genre, year}: AppScreenProps): JSX.Element {
   return (
-    <MainPage
-      filmsCount={filmsCount}
-      title={title}
-      genre={genre}
-      year={year}
-    />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/'>
+          <MainPage
+            filmsCount={filmsCount}
+            title={title}
+            genre={genre}
+            year={year}
+          />
+        </Route>
+        <Route exact path='/login'>
+          <UserPage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
