@@ -1,4 +1,5 @@
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {AppRoutes} from '../../const';
 import AddReviewPage from '../pages/add-review-page/add-review-page';
 import MainPage from '../pages/main-page/main-page';
 import MoviePage from '../pages/movie-page/movie-page';
@@ -17,7 +18,7 @@ function App({filmsCount, title, genre, year}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/'>
+        <Route exact path={AppRoutes.Root}>
           <MainPage
             filmsCount={filmsCount}
             title={title}
@@ -25,19 +26,19 @@ function App({filmsCount, title, genre, year}: AppScreenProps): JSX.Element {
             year={year}
           />
         </Route>
-        <Route exact path='/login'>
+        <Route exact path={AppRoutes.Login}>
           <UserPage />
         </Route>
-        <Route exact path='/mylist'>
+        <Route exact path={AppRoutes.MyList}>
           <MyListPage />
         </Route>
-        <Route exact path='/films/:id'>
+        <Route exact path={AppRoutes.Movie}>
           <MoviePage />
         </Route>
-        <Route exact path='/films/:id/review'>
+        <Route exact path={AppRoutes.AddReview}>
           <AddReviewPage />
         </Route>
-        <Route exact path='/player/:id'>
+        <Route exact path={AppRoutes.Player}>
           <PlayerPage />
         </Route>
       </Switch>
