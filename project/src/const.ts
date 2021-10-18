@@ -1,4 +1,4 @@
-export enum AppRoutes {
+export enum AppRoute {
   AddReview = '/films/:id/review',
   Login = '/login',
   Movie = '/films/:id',
