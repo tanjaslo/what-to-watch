@@ -1,6 +1,6 @@
-import { Reviews } from '../types/reviews';
+import type { Review } from '../types/review';
 
-const reviews: Reviews = [
+export const reviews: Review[] = [
   {
     id: 1,
     user: {
@@ -52,5 +52,3 @@ const reviews: Reviews = [
     date: '2019-01-08T10:10:56.569Z',
   },
 ];
-
-export {reviews};

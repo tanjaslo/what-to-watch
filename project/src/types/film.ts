@@ -16,6 +16,4 @@ export type Film = {
   genre: string,
   released: number,
   isFavorite: boolean,
-}
-
-export type Films = Film[];
+};

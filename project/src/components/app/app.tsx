@@ -1,5 +1,6 @@
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { AppRoute} from '../../const';
+import type { Film } from '../../types/film';
 import AddReviewPage from '../pages/add-review-page/add-review-page';
 import MainPage from '../pages/main-page/main-page';
 import MoviePage from '../pages/movie-page/movie-page';
@@ -9,22 +10,18 @@ import PlayerPage from '../pages/player-page/player-page';
 import UserPage from '../pages/user-page/user-page';
 
 type AppScreenProps = {
-  filmsCount: number;
-  title: string;
-  genre: string;
-  year: number;
+  promoFilm: Film;
+  films: Film[];
 }
 
-function App({filmsCount, title, genre, year}: AppScreenProps): JSX.Element {
+function App({promoFilm, films}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Root}>
           <MainPage
-            filmsCount={filmsCount}
-            title={title}
-            genre={genre}
-            year={year}
+            promoFilm={promoFilm}
+            films={films}
           />
         </Route>
         <Route exact path={AppRoute.Login}>

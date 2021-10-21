@@ -1,16 +1,15 @@
-import FilmCard from '../../film-card/film-card';
+import type {Film} from '../../../types/film';
+import FilmsList from '../../films-list/films-list';
 import Footer from '../../footer/footer';
 import Logo from '../../logo/logo';
 
 type MainPageProps = {
-  filmsCount: number;
-  title: string;
-  genre: string;
-  year: number;
+  promoFilm: Film;
+  films: Film[];
 }
 
-function MainPage(props: MainPageProps): JSX.Element {
-  const {filmsCount, title, genre, year} = props;
+function MainPage({promoFilm, films}: MainPageProps): JSX.Element {
+  const {name, genre, released} = promoFilm;
 
   return (
     <body>
@@ -43,10 +42,10 @@ function MainPage(props: MainPageProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{year}</span>
+                <span className="film-card__year">{released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -105,9 +104,7 @@ function MainPage(props: MainPageProps): JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {new Array(filmsCount).fill(null).map((filmName) => <FilmCard key={filmName} />)}
-          </div>
+          <FilmsList films={films} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
