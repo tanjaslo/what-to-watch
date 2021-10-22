@@ -10,17 +10,15 @@ import PlayerPage from '../pages/player-page/player-page';
 import UserPage from '../pages/user-page/user-page';
 
 type AppScreenProps = {
-  promoFilm: Film;
   films: Film[];
 }
 
-function App({promoFilm, films}: AppScreenProps): JSX.Element {
+function App({films}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Root}>
           <MainPage
-            promoFilm={promoFilm}
             films={films}
           />
         </Route>

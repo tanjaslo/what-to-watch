@@ -6,7 +6,6 @@ import { films } from '../src/mocks/films';
 ReactDOM.render(
   <React.StrictMode>
     <App
-      promoFilm={films[0]}
       films = {films}
     />
   </React.StrictMode>,
