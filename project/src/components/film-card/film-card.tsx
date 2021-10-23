@@ -2,13 +2,22 @@ import { Film } from '../../types/film';
 
 type FilmCardProps = {
   film: Film;
+  onMouseEnter: (id: number) => void;
+  onMouseLeave: (id: null) => void;
 }
 
-function FilmCard({film}: FilmCardProps): JSX.Element {
+function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Element {
   const {name, posterImage} = film;
 
+  const handleMouseEnter = () => onMouseEnter(film.id);
+  const handleMouseLeave = () => onMouseLeave(null);
+
   return (
-    <article className="small-film-card catalog__films-card">
+    <article
+      className="small-film-card catalog__films-card"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="small-film-card__image">
         <img
           src={posterImage}

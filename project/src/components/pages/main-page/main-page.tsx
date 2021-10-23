@@ -12,7 +12,7 @@ function MainPage({films}: MainPageProps): JSX.Element {
   const [promoFilm] = films;
 
   return (
-    <body>
+    <>
       <section className="film-card">
         <div className="film-card__bg">
           <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
@@ -84,7 +84,7 @@ function MainPage({films}: MainPageProps): JSX.Element {
         </section>
         <Footer />
       </div>
-    </body>
+    </>
   );
 }
 
