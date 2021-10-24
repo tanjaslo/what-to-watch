@@ -36,7 +36,7 @@ function AddReviewPage({films}: FilmsListProps): JSX.Element {
             <UserBlock />
           </header>
 
-          <FilmCardPoster film={currentFilm} />
+          <FilmCardPoster film={currentFilm} small />
 
         </div>
 

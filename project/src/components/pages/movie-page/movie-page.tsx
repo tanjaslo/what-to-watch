@@ -63,7 +63,7 @@ function MoviePage({films}: MoviePageProps): JSX.Element {
           <div className="film-card__wrap film-card__translate-top">
             <div className="film-card__info">
 
-              <FilmCardPoster film={currentFilm} isMoviePage />
+              <FilmCardPoster film={currentFilm} big />
 
               <div className="film-card__desc">
                 <nav className="film-nav film-card__nav">
