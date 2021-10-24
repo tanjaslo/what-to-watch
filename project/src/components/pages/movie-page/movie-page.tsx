@@ -1,10 +1,9 @@
 import { useParams } from 'react-router';
 import { Film } from '../../../types/film';
 import CatalogLikeThis from '../../catalog-like-this/catalog-like-this';
-import FilmCardButtons from '../../film-card-buttons/film-card-buttons';
-import FilmCardPoster from '../../film-card-poster/film-card-poster';
 import Footer from '../../footer/footer';
-import Logo from '../../logo/logo';
+import FullFilmCard from '../../full-film-card/full-film-card';
+import PageContent from '../../page-content/page-content';
 import NotFoundPage from '../not-found-page/not-found-page';
 
 type MoviePageProps = {
@@ -16,99 +15,13 @@ function MoviePage({films}: MoviePageProps): JSX.Element {
   const currentFilm = films.find((film) => film.id === +id);
 
   if (currentFilm) {
-    const {name, backgroundImage, genre, released, description, rating, director, starring} = currentFilm;
-
-    const actors = starring.join(', ');
-
     return (
       <>
-        <section className="film-card film-card--full">
-          <div className="film-card__hero">
-            <div className="film-card__bg">
-              <img src={backgroundImage} alt={name} />
-            </div>
-
-            <h1 className="visually-hidden">WTW</h1>
-
-            <header className="page-header film-card__head">
-
-              <Logo />
-
-              <ul className="user-block">
-                <li className="user-block__item">
-                  <div className="user-block__avatar">
-                    <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                  </div>
-                </li>
-                <li className="user-block__item">
-                  <a href="/" className="user-block__link">Sign out</a>
-                </li>
-              </ul>
-            </header>
-
-            <div className="film-card__wrap">
-              <div className="film-card__desc">
-                <h2 className="film-card__title">{name}</h2>
-                <p className="film-card__meta">
-                  <span className="film-card__genre">{genre}</span>
-                  <span className="film-card__year">{released}</span>
-                </p>
-
-                <FilmCardButtons />
-
-              </div>
-            </div>
-          </div>
-
-          <div className="film-card__wrap film-card__translate-top">
-            <div className="film-card__info">
-
-              <FilmCardPoster film={currentFilm} big />
-
-              <div className="film-card__desc">
-                <nav className="film-nav film-card__nav">
-                  <ul className="film-nav__list">
-                    <li className="film-nav__item film-nav__item--active">
-                      <a href="/" className="film-nav__link">Overview</a>
-                    </li>
-                    <li className="film-nav__item">
-                      <a href="/" className="film-nav__link">Details</a>
-                    </li>
-                    <li className="film-nav__item">
-                      <a href="/" className="film-nav__link">Reviews</a>
-                    </li>
-                  </ul>
-                </nav>
-
-                <div className="film-rating">
-                  <div className="film-rating__score">{rating}</div>
-                  <p className="film-rating__meta">
-                    <span className="film-rating__level">Very good</span>
-                    <span className="film-rating__count">{rating} ratings</span>
-                  </p>
-                </div>
-
-                <div className="film-card__text">
-                  {description}
-                  <p className="film-card__director">
-                    <strong>Director: {director}</strong>
-                  </p>
-                  <p className="film-card__starring">
-                    <strong>Starring: {actors} and other</strong>
-                  </p>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="page-content">
-
+        <FullFilmCard film={currentFilm} />
+        <PageContent>
           <CatalogLikeThis films={films} />
           <Footer />
-
-        </div>
+        </PageContent>
       </>
     );
   }

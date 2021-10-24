@@ -2,26 +2,26 @@ import React from 'react';
 
 const MAX_RATING = 10;
 
-function Rating(): JSX.Element {
+function RatingStars(): JSX.Element {
 
   //const ratings = new Array(MAX_RATING).fill(null).map((item, i) => i + 1).reverse();
   //const ratings = Array.from({length: MAX_RATING}, (_, i) => i + 1).reverse();
 
-  const ratings: JSX.Element[] = [];
-  for (let rating = MAX_RATING; rating > 0; rating--) {
-    ratings.push(
-      <React.Fragment key={rating}>
+  const stars: JSX.Element[] = [];
+  for (let star = MAX_RATING; star > 0; star--) {
+    stars.push(
+      <React.Fragment key={star}>
         <input
           className="rating__input"
           type="radio"
           name="rating"
-          id={`star-${rating}`}
-          value={rating}
+          id={`star-${star}`}
+          value={star}
         />
         <label
           className="rating__label"
-          htmlFor={`star-${rating}`}
-        >Rating {rating}
+          htmlFor={`star-${star}`}
+        >Rating {star}
         </label>
       </React.Fragment>,
     );
@@ -29,10 +29,10 @@ function Rating(): JSX.Element {
   return (
     <div className="rating">
       <div className="rating__stars">
-        {ratings}
+        {stars}
       </div>
     </div>
   );
 }
 
-export default Rating;
+export default RatingStars;
