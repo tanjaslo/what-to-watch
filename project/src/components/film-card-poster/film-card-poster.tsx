@@ -5,7 +5,7 @@ type FilmCardPosterProps = {
   isMoviePage?: boolean;
 }
 
-function FilmCardPoster({film, isMoviePage = false}: FilmCardPosterProps):JSX.Element {
+function FilmCardPoster({film, isMoviePage = false}: FilmCardPosterProps): JSX.Element {
   const {name, posterImage} = film;
 
   return (

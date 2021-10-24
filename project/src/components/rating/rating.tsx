@@ -2,7 +2,7 @@ import React from 'react';
 
 const MAX_RATING = 10;
 
-function Rating():JSX.Element {
+function Rating(): JSX.Element {
 
   //const ratings = new Array(MAX_RATING).fill(null).map((item, i) => i + 1).reverse();
   //const ratings = Array.from({length: MAX_RATING}, (_, i) => i + 1).reverse();

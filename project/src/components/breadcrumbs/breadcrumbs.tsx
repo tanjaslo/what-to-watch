@@ -3,7 +3,7 @@ type BreadcrumbsProps = {
   name: string;
 }
 
-function Breadcrumbs({id, name}: BreadcrumbsProps):JSX.Element {
+function Breadcrumbs({id, name}: BreadcrumbsProps): JSX.Element {
   return (
     <nav className="breadcrumbs">
       <ul className="breadcrumbs__list">

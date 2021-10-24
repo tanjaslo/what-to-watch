@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Film } from '../../types/film';
 
 type FilmCardProps = {
@@ -27,9 +28,11 @@ function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Elemen
         />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">
-          {name}
-        </a>
+        <Link
+          to={`/films/${film.id}`}
+          className="small-film-card__link"
+        >{name}
+        </Link>
       </h3>
     </article>
   );
