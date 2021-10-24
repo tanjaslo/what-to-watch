@@ -1,6 +1,7 @@
 import { useParams } from 'react-router';
 import { Film } from '../../../types/film';
 import CatalogLikeThis from '../../catalog-like-this/catalog-like-this';
+import FilmCardButtons from '../../film-card-buttons/film-card-buttons';
 import FilmCardPoster from '../../film-card-poster/film-card-poster';
 import Footer from '../../footer/footer';
 import Logo from '../../logo/logo';
@@ -53,21 +54,8 @@ function MoviePage({films}: MoviePageProps): JSX.Element {
                   <span className="film-card__year">{released}</span>
                 </p>
 
-                <div className="film-card__buttons">
-                  <button className="btn btn--play film-card__button" type="button">
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s"></use>
-                    </svg>
-                    <span>Play</span>
-                  </button>
-                  <button className="btn btn--list film-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                    <span>My list</span>
-                  </button>
-                  <a href="add-review.html" className="btn film-card__button">Add review</a>
-                </div>
+                <FilmCardButtons />
+
               </div>
             </div>
           </div>
