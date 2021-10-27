@@ -15,7 +15,7 @@ function FilmsList({films}: FilmsListProps): JSX.Element {
   const handleMouseEnter = (id: number) => {
     setActiveCard(id);
     // eslint-disable-next-line no-console
-    console.log(id);
+    //console.log(id);
   };
 
   const handleMouseLeave = () => {
