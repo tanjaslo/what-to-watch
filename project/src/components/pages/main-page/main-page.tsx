@@ -3,6 +3,7 @@ import Catalog from '../../catalog/catalog';
 import Footer from '../../footer/footer';
 import Logo from '../../logo/logo';
 import Promo from '../../promo/promo';
+import UserBlock from '../../user-block/user-block';
 
 type MainPageProps = {
   films: Film[];
@@ -22,17 +23,7 @@ function MainPage({films}: MainPageProps): JSX.Element {
 
         <header className="page-header film-card__head">
           <Logo />
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link" href="/">Sign out</a>
-            </li>
-          </ul>
+          <UserBlock />
         </header>
 
         <Promo promoFilm={promoFilm as Film}/>
