@@ -3,6 +3,7 @@ import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 import FilmCardPoster from '../film-card-poster/film-card-poster';
 import FilmNavList from '../film-nav-list/film-nav-list';
 import Logo from '../logo/logo';
+import PageHeader from '../page-header/page-header';
 import UserBlock from '../user-block/user-block';
 
 type FullFilmCardProps = {
@@ -22,10 +23,10 @@ function FullFilmCard({film}: FullFilmCardProps): JSX.Element {
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
-        <header className="page-header film-card__head">
+        <PageHeader filmCardHead>
           <Logo />
           <UserBlock />
-        </header>
+        </PageHeader>
 
         <div className="film-card__wrap">
           <div className="film-card__desc">

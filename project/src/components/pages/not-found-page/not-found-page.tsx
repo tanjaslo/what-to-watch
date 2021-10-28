@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
 import Footer from '../../footer/footer';
 import Logo from '../../logo/logo';
+import PageHeader from '../../page-header/page-header';
 
 function NotFoundPage(): JSX.Element {
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
+      <PageHeader userPageHead>
         <Logo />
-      </header>
+      </PageHeader>
 
       <main className="page__main" style={{minHeight: '100vh'}}>
         <div className="page-content" style={{textAlign: 'center'}}>

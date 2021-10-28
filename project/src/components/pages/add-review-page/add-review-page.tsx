@@ -6,12 +6,13 @@ import ReviewForm from '../../add-review-form/add-review-form';
 import UserBlock from '../../user-block/user-block';
 import NotFoundPage from '../not-found-page/not-found-page';
 import FilmCardPoster from '../../film-card-poster/film-card-poster';
+import PageHeader from '../../page-header/page-header';
 
-type FilmsListProps = {
+type AddReviewPageProps = {
   films: Film[];
 }
 
-function AddReviewPage({films}: FilmsListProps): JSX.Element {
+function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
   const {id}: {id: string} = useParams();
   const currentFilm = films.find((film) => film.id === +id);
 
@@ -28,13 +29,11 @@ function AddReviewPage({films}: FilmsListProps): JSX.Element {
             />
           </div>
 
-          <h1 className="visually-hidden">WTW</h1>
-
-          <header className="page-header">
+          <PageHeader>
             <Logo />
             <Breadcrumbs id={id} name={name} />
             <UserBlock />
-          </header>
+          </PageHeader>
 
           <FilmCardPoster film={currentFilm} small />
 

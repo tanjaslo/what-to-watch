@@ -1,13 +1,14 @@
 import Footer from '../../footer/footer';
 import Logo from '../../logo/logo';
+import PageHeader from '../../page-header/page-header';
 
 function LoginPage(): JSX.Element {
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
+      <PageHeader userPageHead>
         <Logo />
         <h1 className="page-title user-page__title">Sign in</h1>
-      </header>
+      </PageHeader>
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
