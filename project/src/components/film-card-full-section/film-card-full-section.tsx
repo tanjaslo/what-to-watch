@@ -4,7 +4,9 @@ type FilmCardFullSectionProps = {
 
 function FilmCardFullSection({children}: FilmCardFullSectionProps): JSX.Element {
   return (
-    <section className="film-card film-card--full">{children}</section>
+    <section className="film-card film-card--full">
+      {children}
+    </section>
   );
 }
 

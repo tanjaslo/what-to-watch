@@ -1,6 +1,6 @@
 import Logo from '../logo/logo';
 
-function Footer(): JSX.Element {
+function PageFooter(): JSX.Element {
   return (
     <footer className="page-footer">
       <Logo isLight />
@@ -12,4 +12,4 @@ function Footer(): JSX.Element {
   );
 }
 
-export default Footer;
+export default PageFooter;

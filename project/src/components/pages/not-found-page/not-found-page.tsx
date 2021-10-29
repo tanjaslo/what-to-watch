@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
-import Footer from '../../footer/footer';
 import Logo from '../../logo/logo';
 import PageHeader from '../../page-header/page-header';
+import PageFooter from '../../page-footer/page-footer';
+import UserBlock from '../../user-block/user-block';
 
 function NotFoundPage(): JSX.Element {
   return (
     <div className="user-page">
       <PageHeader userPageHead>
         <Logo />
+        <UserBlock />
       </PageHeader>
 
       <main className="page__main" style={{minHeight: '100vh'}}>
@@ -26,7 +28,7 @@ function NotFoundPage(): JSX.Element {
         </div>
       </main>
 
-      <Footer />
+      <PageFooter />
     </div>
   );
 }

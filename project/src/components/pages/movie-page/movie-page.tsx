@@ -1,10 +1,10 @@
 import { useParams } from 'react-router';
 import { Film } from '../../../types/film';
 import CatalogLikeThis from '../../catalog-like-this/catalog-like-this';
-import Footer from '../../footer/footer';
 import FilmCardFull from '../../film-card-full/film-card-full';
-import PageContent from '../../page-content/page-content';
 import NotFoundPage from '../not-found-page/not-found-page';
+import PageContent from '../../page-content/page-content';
+import PageFooter from '../../page-footer/page-footer';
 
 type MoviePageProps = {
   films: Film[];
@@ -20,7 +20,7 @@ function MoviePage({films}: MoviePageProps): JSX.Element {
         <FilmCardFull film={currentFilm} />
         <PageContent>
           <CatalogLikeThis films={films} />
-          <Footer />
+          <PageFooter />
         </PageContent>
       </>
     );

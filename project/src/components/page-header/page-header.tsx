@@ -4,9 +4,10 @@ type PageHeaderProps = {
   children: React.ReactNode,
   filmCardHead?: boolean;
   userPageHead?: boolean;
+  title?: string;
 }
 
-function PageHeader({children, filmCardHead, userPageHead}: PageHeaderProps): JSX.Element {
+function PageHeader({children, filmCardHead, userPageHead, title}: PageHeaderProps): JSX.Element {
   const INITIAL_CLASS = 'page-header';
 
   const fullClassName = classNames(
@@ -19,6 +20,7 @@ function PageHeader({children, filmCardHead, userPageHead}: PageHeaderProps): JS
   return (
     <header className={fullClassName}>
       {children}
+      {title? <h1 className="page-title user-page__title">{title}</h1> : ''}
     </header>
   );
 }

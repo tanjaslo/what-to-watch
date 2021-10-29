@@ -1,8 +1,8 @@
 import type { Film } from '../../../types/film';
 import Catalog from '../../catalog/catalog';
 import FilmCardPromo from '../../film-card-promo/film-card-promo';
-import Footer from '../../footer/footer';
 import PageContent from '../../page-content/page-content';
+import PageFooter from '../../page-footer/page-footer';
 
 type MainPageProps = {
   films: Film[];
@@ -16,7 +16,7 @@ function MainPage({films}: MainPageProps): JSX.Element {
       <FilmCardPromo films={films} />
       <PageContent>
         <Catalog films={mainFilmsList} isMainPage />
-        <Footer />
+        <PageFooter />
       </PageContent>
     </>
   );

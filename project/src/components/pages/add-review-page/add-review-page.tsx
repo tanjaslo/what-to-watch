@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 import { Film } from '../../../types/film';
 import ReviewForm from '../../add-review-form/add-review-form';
 import NotFoundPage from '../not-found-page/not-found-page';
-import FilmCardHeader from '../../film-card-header/film-card-header';
 import FilmCardFullSection from '../../film-card-full-section/film-card-full-section';
+import FilmCardHeader from '../../film-card-header/film-card-header';
 
 type AddReviewPageProps = {
   films: Film[];
