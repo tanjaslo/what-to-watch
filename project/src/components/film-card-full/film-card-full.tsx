@@ -1,5 +1,6 @@
 import { Film } from '../../types/film';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
+import FilmCardFullSection from '../film-card-full-section/film-card-full-section';
 import FilmCardPoster from '../film-card-poster/film-card-poster';
 import FilmNavList from '../film-nav-list/film-nav-list';
 import Logo from '../logo/logo';
@@ -16,7 +17,7 @@ function FilmCardFull({film}: FilmCardFullProps): JSX.Element {
   const actors = starring.join(', ');
 
   return (
-    <section className="film-card film-card--full">
+    <FilmCardFullSection>
       <div className="film-card__hero">
         <div className="film-card__bg">
           <img src={backgroundImage} alt={name} />
@@ -67,7 +68,7 @@ function FilmCardFull({film}: FilmCardFullProps): JSX.Element {
           </div>
         </div>
       </div>
-    </section>
+    </FilmCardFullSection>
   );
 }
 

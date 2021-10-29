@@ -2,7 +2,7 @@ import { useParams } from 'react-router';
 import { Film } from '../../../types/film';
 import CatalogLikeThis from '../../catalog-like-this/catalog-like-this';
 import Footer from '../../footer/footer';
-import FullFilmCard from '../../full-film-card/full-film-card';
+import FilmCardFull from '../../film-card-full/film-card-full';
 import PageContent from '../../page-content/page-content';
 import NotFoundPage from '../not-found-page/not-found-page';
 
@@ -17,7 +17,7 @@ function MoviePage({films}: MoviePageProps): JSX.Element {
   if (currentFilm) {
     return (
       <>
-        <FullFilmCard film={currentFilm} />
+        <FilmCardFull film={currentFilm} />
         <PageContent>
           <CatalogLikeThis films={films} />
           <Footer />
