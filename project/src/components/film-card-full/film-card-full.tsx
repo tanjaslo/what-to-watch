@@ -6,11 +6,11 @@ import Logo from '../logo/logo';
 import PageHeader from '../page-header/page-header';
 import UserBlock from '../user-block/user-block';
 
-type FullFilmCardProps = {
+type FilmCardFullProps = {
   film: Film;
 }
 
-function FullFilmCard({film}: FullFilmCardProps): JSX.Element {
+function FilmCardFull({film}: FilmCardFullProps): JSX.Element {
   const {name, backgroundImage, genre, released, description, rating, director, starring} = film;
 
   const actors = starring.join(', ');
@@ -71,4 +71,4 @@ function FullFilmCard({film}: FullFilmCardProps): JSX.Element {
   );
 }
 
-export default FullFilmCard;
+export default FilmCardFull;
