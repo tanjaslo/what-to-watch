@@ -94,6 +94,6 @@ export const films: Film[] = [
     runTime: 56,
     genre: 'Fantasy',
     released: 2016,
-    isFavorite: false,
+    isFavorite: true,
   },
 ];

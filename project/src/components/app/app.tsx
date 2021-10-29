@@ -26,7 +26,7 @@ function App({films}: AppScreenProps): JSX.Element {
           <UserPage />
         </Route>
         <Route exact path={AppRoute.MyList}>
-          <MyListPage />
+          <MyListPage films={films} />
         </Route>
         <Route exact path={AppRoute.Movie}>
           <MoviePage films={films} />

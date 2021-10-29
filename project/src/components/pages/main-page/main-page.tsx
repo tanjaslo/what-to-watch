@@ -9,11 +9,13 @@ type MainPageProps = {
 }
 
 function MainPage({films}: MainPageProps): JSX.Element {
+  const mainFilmsList = films.slice(1, films.length);
+
   return (
     <>
       <FilmCardPromo films={films} />
       <PageContent>
-        <Catalog films={films} />
+        <Catalog films={mainFilmsList} isMainPage />
         <Footer />
       </PageContent>
     </>
