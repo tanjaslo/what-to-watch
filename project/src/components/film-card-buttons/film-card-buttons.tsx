@@ -1,3 +1,4 @@
+import { useParams } from 'react-router';
 import AddReviewLink from '../add-review-link/add-review-link';
 
 type FilmCardButtonsProps = {
@@ -5,6 +6,8 @@ type FilmCardButtonsProps = {
 }
 
 function FilmCardButtons({isPromo}: FilmCardButtonsProps): JSX.Element {
+  const {id} : {id: string} = useParams();
+
   return (
     <div className="film-card__buttons">
       <button className="btn btn--play film-card__button" type="button">
@@ -20,7 +23,7 @@ function FilmCardButtons({isPromo}: FilmCardButtonsProps): JSX.Element {
         <span>My list</span>
       </button>
       {!isPromo ? (
-        <AddReviewLink />
+        <AddReviewLink id={+id} />
       ) : ('')}
     </div>
   );

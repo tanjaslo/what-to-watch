@@ -1,6 +1,12 @@
-function AddReviewLink(): JSX.Element {
+import { Link } from 'react-router-dom';
+
+type AddReviewLinkProps = {
+  id: number;
+}
+
+function AddReviewLink({id}: AddReviewLinkProps): JSX.Element {
   return (
-    <a href="add-review.html" className="btn film-card__button">Add review</a>
+    <Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link>
   );
 }
 
