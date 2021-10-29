@@ -1,10 +1,12 @@
 import { Film } from '../../types/film';
+import FilmCardBg from '../film-card-bg/film-card-bg';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 import FilmCardFullSection from '../film-card-full-section/film-card-full-section';
 import FilmCardPoster from '../film-card-poster/film-card-poster';
 import FilmNavList from '../film-nav-list/film-nav-list';
 import Logo from '../logo/logo';
 import PageHeader from '../page-header/page-header';
+import FilmRating from '../rating/rating';
 import UserBlock from '../user-block/user-block';
 
 type FilmCardFullProps = {
@@ -12,16 +14,14 @@ type FilmCardFullProps = {
 }
 
 function FilmCardFull({film}: FilmCardFullProps): JSX.Element {
-  const {name, backgroundImage, genre, released, description, rating, director, starring} = film;
+  const {name, genre, released, description, director, starring} = film;
 
   const actors = starring.join(', ');
 
   return (
     <FilmCardFullSection>
       <div className="film-card__hero">
-        <div className="film-card__bg">
-          <img src={backgroundImage} alt={name} />
-        </div>
+        <FilmCardBg film={film} />
 
         <h1 className="visually-hidden">WTW</h1>
         <PageHeader filmCardHead>
@@ -46,14 +46,7 @@ function FilmCardFull({film}: FilmCardFullProps): JSX.Element {
           <FilmCardPoster film={film} big />
           <div className="film-card__desc">
             <FilmNavList />
-
-            <div className="film-rating">
-              <div className="film-rating__score">{rating}</div>
-              <p className="film-rating__meta">
-                <span className="film-rating__level">Very good</span>
-                <span className="film-rating__count">{rating} ratings</span>
-              </p>
-            </div>
+            <FilmRating film={film} />
 
             <div className="film-card__text">
               {description}

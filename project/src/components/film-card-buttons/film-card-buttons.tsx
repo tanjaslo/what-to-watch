@@ -1,4 +1,10 @@
-function FilmCardButtons(): JSX.Element {
+import AddReviewLink from '../add-review-link/add-review-link';
+
+type FilmCardButtonsProps = {
+  isPromo?: boolean;
+}
+
+function FilmCardButtons({isPromo}: FilmCardButtonsProps): JSX.Element {
   return (
     <div className="film-card__buttons">
       <button className="btn btn--play film-card__button" type="button">
@@ -13,7 +19,9 @@ function FilmCardButtons(): JSX.Element {
         </svg>
         <span>My list</span>
       </button>
-      <a href="add-review.html" className="btn film-card__button">Add review</a>
+      {!isPromo ? (
+        <AddReviewLink />
+      ) : ('')}
     </div>
   );
 }
