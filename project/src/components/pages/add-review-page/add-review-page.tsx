@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { Film } from '../../../types/film';
-import ReviewForm from '../../add-review-form/add-review-form';
+import AddReviewForm from '../../add-review-form/add-review-form';
 import NotFoundPage from '../not-found-page/not-found-page';
 import FilmCardFullSection from '../../film-card-full-section/film-card-full-section';
 import FilmCardHeader from '../../film-card-header/film-card-header';
@@ -17,7 +17,7 @@ function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
     return (
       <FilmCardFullSection>
         <FilmCardHeader film={currentFilm} />
-        <ReviewForm />
+        <AddReviewForm />
       </FilmCardFullSection>
     );
   }
