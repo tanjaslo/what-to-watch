@@ -1,27 +1,33 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 const MAX_RATING = 10;
 
 function RatingStars(): JSX.Element {
-
   //const ratings = new Array(MAX_RATING).fill(null).map((item, i) => i + 1).reverse();
   //const ratings = Array.from({length: MAX_RATING}, (_, i) => i + 1).reverse();
+  const [rating, setRating] = useState<number>(0);
+
+  const handleRatingChange = ({target}: ChangeEvent<HTMLInputElement>) => {
+    setRating(+target.value);
+  };
 
   const stars: JSX.Element[] = [];
-  for (let star = MAX_RATING; star > 0; star--) {
+  for (let starsCount = MAX_RATING; starsCount > 0; starsCount--) {
     stars.push(
-      <React.Fragment key={star}>
+      <React.Fragment key={starsCount}>
         <input
           className="rating__input"
           type="radio"
           name="rating"
-          id={`star-${star}`}
-          value={star}
+          id={`star-${starsCount}`}
+          value={starsCount}
+          onChange = {handleRatingChange}
+          checked={rating === starsCount}
         />
         <label
           className="rating__label"
-          htmlFor={`star-${star}`}
-        >Rating {star}
+          htmlFor={`star-${starsCount}`}
+        >Rating {starsCount}
         </label>
       </React.Fragment>,
     );
@@ -31,6 +37,7 @@ function RatingStars(): JSX.Element {
       <div className="rating__stars">
         {stars}
       </div>
+      {rating}
     </div>
   );
 }
