@@ -18,7 +18,11 @@ function FilmNavList(): JSX.Element {
 
             return (
               <li key={navigationItem} className={fullClassname}>
-                <Link to={path} className="film-nav__link">{caption}</Link>
+                <Link
+                  className="film-nav__link"
+                  to={path}
+                >{caption}
+                </Link>
               </li>
             );
           })

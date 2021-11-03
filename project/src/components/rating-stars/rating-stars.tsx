@@ -37,7 +37,6 @@ function RatingStars(): JSX.Element {
       <div className="rating__stars">
         {stars}
       </div>
-      {rating}
     </div>
   );
 }

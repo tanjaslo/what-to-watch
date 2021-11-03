@@ -29,8 +29,8 @@ function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Elemen
       </div>
       <h3 className="small-film-card__title">
         <Link
-          to={`/films/${film.id}`}
           className="small-film-card__link"
+          to={`/films/${film.id}`}
         >{name}
         </Link>
       </h3>

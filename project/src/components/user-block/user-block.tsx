@@ -10,7 +10,11 @@ function UserBlock(): JSX.Element {
         </div>
       </li>
       <li className="user-block__item">
-        <Link to={AppRoute.Root} className="user-block__link">Sign out</Link>
+        <Link
+          className="user-block__link"
+          to={AppRoute.Root}
+        >Sign out
+        </Link>
       </li>
     </ul>
   );
