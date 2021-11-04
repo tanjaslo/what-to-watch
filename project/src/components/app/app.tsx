@@ -37,7 +37,7 @@ function App({films}: AppScreenProps): JSX.Element {
           />
         </Route>
         <Route exact path={AppRoute.Player}>
-          <PlayerPage />
+          <PlayerPage films={films} />
         </Route>
         <Route>
           <NotFoundPage />
