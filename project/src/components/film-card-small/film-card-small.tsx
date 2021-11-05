@@ -8,9 +8,9 @@ type FilmCardProps = {
 }
 
 function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Element {
-  const {name, posterImage} = film;
+  const {id, name, posterImage} = film;
 
-  const handleMouseEnter = () => onMouseEnter(film.id);
+  const handleMouseEnter = () => onMouseEnter(id);
   const handleMouseLeave = () => onMouseLeave(null);
 
   return (
@@ -30,7 +30,7 @@ function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Elemen
       <h3 className="small-film-card__title">
         <Link
           className="small-film-card__link"
-          to={`/films/${film.id}`}
+          to={`/films/${id}`}
         >{name}
         </Link>
       </h3>
