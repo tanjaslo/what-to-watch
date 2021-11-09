@@ -1,6 +1,7 @@
 import { Redirect, useParams } from 'react-router';
 import { AppRoute } from '../../../const';
 import { Film } from '../../../types/film';
+import VideoPlayer from '../../video-player/video-player';
 
 type PlayerPageProps = {
   films: Film[];
@@ -11,16 +12,9 @@ function PlayerPage({films}: PlayerPageProps): JSX.Element {
   const currentFilm = films.find((film) => film.id === +(id));
 
   if (currentFilm) {
-    const {posterImage, videoLink} = currentFilm;
-
     return (
       <div className="player">
-        <video
-          src={videoLink}
-          className="player__video"
-          poster={posterImage}
-        >
-        </video>
+        <VideoPlayer film={currentFilm} />
 
         <button type="button" className="player__exit">Exit</button>
 
