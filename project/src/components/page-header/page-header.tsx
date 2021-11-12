@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 type PageHeaderProps = {
-  children: React.ReactNode,
+  children: React.ReactNode;
   filmCardHead?: boolean;
   userPageHead?: boolean;
   title?: string;

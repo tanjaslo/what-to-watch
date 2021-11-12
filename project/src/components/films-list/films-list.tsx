@@ -10,7 +10,7 @@ type ActiveCard = null | number;
 
 function FilmsList({films}: FilmsListProps): JSX.Element {
 
-  const [, setActiveCard] = useState<ActiveCard>(null);
+  const [activeCard, setActiveCard] = useState<ActiveCard>(null);
 
   const handleMouseEnter = (id: number) => {
     setActiveCard(id);
@@ -30,6 +30,7 @@ function FilmsList({films}: FilmsListProps): JSX.Element {
           key={film.id}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
+          isPlaying={Number(film.id) === activeCard}
         />))}
     </div>
   );

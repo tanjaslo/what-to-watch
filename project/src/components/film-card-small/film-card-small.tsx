@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
 import { Film } from '../../types/film';
-import VideoPlayer from '../video-player/video-player';
+import VideoPreview from '../video-preview/video-preview';
 
 type FilmCardProps = {
   film: Film;
   onMouseEnter: (id: number) => void;
   onMouseLeave: (id: null) => void;
+  isPlaying: boolean;
 }
 
-function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Element {
-  const {id, name} = film;
+function FilmCard({film, onMouseEnter, onMouseLeave, isPlaying}: FilmCardProps): JSX.Element {
+  const {id, name, previewImage, videoLink} = film;
 
   const handleMouseEnter = () => onMouseEnter(id);
   const handleMouseLeave = () => onMouseLeave(null);
@@ -21,7 +22,11 @@ function FilmCard({film, onMouseEnter, onMouseLeave}: FilmCardProps): JSX.Elemen
       onMouseLeave={handleMouseLeave}
     >
       <div className="small-film-card__image">
-        <VideoPlayer film={film} />
+        <VideoPreview
+          poster={previewImage}
+          src={videoLink}
+          isPlaying={isPlaying}
+        />
       </div>
       <h3 className="small-film-card__title">
         <Link
