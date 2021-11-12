@@ -12,14 +12,14 @@ type FilmCardProps = {
 function FilmCard({film, onMouseEnter, onMouseLeave, isPlaying}: FilmCardProps): JSX.Element {
   const {id, name, previewImage, videoLink} = film;
 
-  const handleMouseEnter = () => onMouseEnter(id);
-  const handleMouseLeave = () => onMouseLeave(null);
+  //const handleMouseEnter = () => onMouseEnter(id);
+  //const handleMouseLeave = () => onMouseLeave(null);
 
   return (
     <article
       className="small-film-card catalog__films-card"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => onMouseEnter(id)}
+      onMouseLeave={() => onMouseLeave(null)}
     >
       <div className="small-film-card__image">
         <VideoPreview

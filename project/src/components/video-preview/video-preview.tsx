@@ -13,13 +13,9 @@ function VideoPreview({src, poster, isPlaying}: VideoPlayerProps): JSX.Element {
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
 
-    if (currentVideo === null) {
-      return;
-    }
-
     if (isPlaying) {
       timer = setTimeout(() => {
-        currentVideo.play();
+        currentVideo?.play();
       }, 1000);
     }
 
