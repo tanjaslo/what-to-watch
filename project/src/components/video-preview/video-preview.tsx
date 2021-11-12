@@ -23,7 +23,9 @@ function VideoPreview({src, poster, isPlaying}: VideoPlayerProps): JSX.Element {
       currentVideo.load();
     }
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+    };
 
   }, [currentVideo, isPlaying]);
 

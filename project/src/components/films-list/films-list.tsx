@@ -6,19 +6,16 @@ type FilmsListProps = {
   films: Film[];
 }
 
-type ActiveCard = null | number;
+type ActiveCardId = null | number;
 
 function FilmsList({films}: FilmsListProps): JSX.Element {
 
-  const [activeCard, setActiveCard] = useState<ActiveCard>(null);
+  const [activeCardId, setActiveCardId] = useState<ActiveCardId>(null);
 
-  const handleMouseEnter = (id: number) => {
-    setActiveCard(id);
-    //eslint-disable-next-line no-console
-    console.log(id);
-  };
+  const handleMouseEnter = (id: number) => setActiveCardId(id);
+  const handleMouseLeave = () => setActiveCardId(null);
 
-  const handleMouseLeave = () => setActiveCard(null);
+  const isActive = (id: number): boolean => activeCardId === id;
 
   return (
     <div className="catalog__films-list">
@@ -28,7 +25,7 @@ function FilmsList({films}: FilmsListProps): JSX.Element {
           key={film.id}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          isPlaying={Number(film.id) === activeCard}
+          isPlaying={isActive(film.id)}
         />))}
     </div>
   );
