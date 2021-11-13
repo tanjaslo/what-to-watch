@@ -22,9 +22,7 @@ function FilmCardButtons({isPromo}: FilmCardButtonsProps): JSX.Element {
         </svg>
         <span>My list</span>
       </button>
-      {!isPromo ? (
-        <AddReviewLink id={+id} />
-      ) : ('')}
+      {!isPromo && <AddReviewLink id={+id} />}
     </div>
   );
 }

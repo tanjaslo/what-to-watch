@@ -20,7 +20,7 @@ function PageHeader({children, filmCardHead, userPageHead, title}: PageHeaderPro
   return (
     <header className={fullClassName}>
       {children}
-      {title? <h1 className="page-title user-page__title">{title}</h1> : ''}
+      {title && <h1 className="page-title user-page__title">{title}</h1>}
     </header>
   );
 }
