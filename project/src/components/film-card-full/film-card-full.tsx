@@ -1,22 +1,21 @@
 import { Film } from '../../types/film';
+import { Review } from '../../types/review';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 import FilmCardFullSection from '../film-card-full-section/film-card-full-section';
 import FilmCardPoster from '../film-card-poster/film-card-poster';
-import FilmNavList from '../film-nav-list/film-nav-list';
 import Logo from '../logo/logo';
 import PageHeader from '../page-header/page-header';
-import FilmRating from '../rating/rating';
+import Tabs from '../tabs/tabs';
 import UserBlock from '../user-block/user-block';
 
 type FilmCardFullProps = {
   film: Film;
+  reviews: Review[];
 }
 
-function FilmCardFull({film}: FilmCardFullProps): JSX.Element {
-  const {name, genre, released, description, director, starring} = film;
-
-  const actors = starring.join(', ');
+function FilmCardFull({film, reviews}: FilmCardFullProps): JSX.Element {
+  const {name, genre, released} = film;
 
   return (
     <FilmCardFullSection>
@@ -45,19 +44,7 @@ function FilmCardFull({film}: FilmCardFullProps): JSX.Element {
         <div className="film-card__info">
           <FilmCardPoster film={film} big />
           <div className="film-card__desc">
-            <FilmNavList />
-            <FilmRating film={film} />
-
-            <div className="film-card__text">
-              {description}
-              <p className="film-card__director">
-                <strong>Director: {director}</strong>
-              </p>
-              <p className="film-card__starring">
-                <strong>Starring: {actors} and other</strong>
-              </p>
-            </div>
-
+            <Tabs film={film} reviews={reviews} />
           </div>
         </div>
       </div>

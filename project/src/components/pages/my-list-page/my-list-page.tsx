@@ -1,4 +1,4 @@
-import { Film } from '../../../types/film';
+import type { Film } from '../../../types/film';
 import Catalog from '../../catalog/catalog';
 import Logo from '../../logo/logo';
 import PageHeader from '../../page-header/page-header';

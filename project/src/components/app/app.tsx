@@ -1,6 +1,7 @@
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { AppRoute} from '../../const';
 import type { Film } from '../../types/film';
+import type { Review } from '../../types/review';
 import AddReviewPage from '../pages/add-review-page/add-review-page';
 import MainPage from '../pages/main-page/main-page';
 import MoviePage from '../pages/movie-page/movie-page';
@@ -11,9 +12,10 @@ import UserPage from '../pages/user-page/user-page';
 
 type AppScreenProps = {
   films: Film[];
+  reviews: Review[];
 }
 
-function App({films}: AppScreenProps): JSX.Element {
+function App({films, reviews}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
@@ -29,7 +31,7 @@ function App({films}: AppScreenProps): JSX.Element {
           <MyListPage films={films} />
         </Route>
         <Route exact path={AppRoute.Movie}>
-          <MoviePage films={films} />
+          <MoviePage films={films} reviews={reviews} />
         </Route>
         <Route exact path={AppRoute.AddReview}>
           <AddReviewPage

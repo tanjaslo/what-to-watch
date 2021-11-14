@@ -1,17 +1,17 @@
 import classNames from 'classnames';
 import { SyntheticEvent } from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { GENRES_LIST, DEFAULT_GENRE } from '../../const';
 
 function GenresList(): JSX.Element {
 
   const [activeGenre, setActiveGenre] = useState<string>(DEFAULT_GENRE);
-  //console.log(activeGenre);
 
-  const INITIAL_CLASS = 'catalog__genres-item';
+  const INITIAL_CLASSNAME = 'catalog__genres-item';
 
   const activeClassName = classNames(
-    INITIAL_CLASS,
+    INITIAL_CLASSNAME,
     {'catalog__genres-item--active': activeGenre},
   );
 
@@ -27,16 +27,16 @@ function GenresList(): JSX.Element {
         <li
           className={genre === activeGenre
             ? activeClassName
-            : INITIAL_CLASS}
+            : INITIAL_CLASSNAME}
           key={genre}
         >
-          <a
-            href={`#${genre}`}
+          <Link
+            to={`#${genre}`}
             className="catalog__genres-link"
             data-value={genre}
             onClick={handleGenresItemClick}
           >{genre}
-          </a>
+          </Link>
         </li>))}
     </ul>
   );

@@ -1,6 +1,6 @@
 import { Redirect, useParams } from 'react-router';
 import { AppRoute } from '../../../const';
-import { Film } from '../../../types/film';
+import type { Film } from '../../../types/film';
 
 type PlayerPageProps = {
   films: Film[];

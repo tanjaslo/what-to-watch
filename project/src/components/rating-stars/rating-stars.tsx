@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { Fragment, ChangeEvent, useState } from 'react';
 
 const MAX_RATING = 10;
 
@@ -14,7 +14,7 @@ function RatingStars(): JSX.Element {
   const stars: JSX.Element[] = [];
   for (let starsCount = MAX_RATING; starsCount > 0; starsCount--) {
     stars.push(
-      <React.Fragment key={starsCount}>
+      <Fragment key={starsCount}>
         <input
           className="rating__input"
           type="radio"
@@ -29,7 +29,7 @@ function RatingStars(): JSX.Element {
           htmlFor={`star-${starsCount}`}
         >Rating {starsCount}
         </label>
-      </React.Fragment>,
+      </Fragment>,
     );
   }
   return (

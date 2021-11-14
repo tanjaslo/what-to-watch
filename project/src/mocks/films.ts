@@ -72,7 +72,7 @@ export const films: Film[] = [
     scoresCount: 243,
     director: 'Justin Kurzel',
     starring: ['Michael Fassbender', 'Marion Cotillard', 'Paddy Considine', 'Sean Harris'],
-    runTime: 56,
+    runTime: 165,
     genre: 'Tragedy',
     released: 2015,
     isFavorite: true,

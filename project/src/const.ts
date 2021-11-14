@@ -13,10 +13,10 @@ export const GENRES_LIST = [
   'Thrillers',
 ];
 
-export const NavigationItem = {
-  Overview: 'overview',
-  Details: 'details',
-  Reviews: 'reviews',
+export const TabItem = {
+  OVERVIEW: 'overview',
+  DETAILS: 'details',
+  REVIEWS: 'reviews',
 };
 
 export enum AppRoute {

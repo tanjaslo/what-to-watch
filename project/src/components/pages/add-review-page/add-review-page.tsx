@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Film } from '../../../types/film';
+import type { Film } from '../../../types/film';
 import AddReviewForm from '../../add-review-form/add-review-form';
 import NotFoundPage from '../not-found-page/not-found-page';
 import FilmCardFullSection from '../../film-card-full-section/film-card-full-section';
