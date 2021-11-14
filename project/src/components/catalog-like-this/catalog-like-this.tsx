@@ -6,17 +6,18 @@ type CatalogLikeThisProps = {
   films: Film[];
 }
 
-const OTHER_FILMS_COUNT = 4;
-
 function CatalogLikeThis({films}: CatalogLikeThisProps): JSX.Element {
   const {id}: {id: string} = useParams();
+
   const currentFilm = films.find((film) => film.id === +id);
-  const otherFilms = films.filter((film) => film !== currentFilm).slice(0, OTHER_FILMS_COUNT);
+  const similarGenreFilms = films.filter((film) => (
+    film !== currentFilm && film.genre === currentFilm?.genre
+  ));
 
   return (
     <section className="catalog catalog--like-this">
       <h2 className="catalog__title">More like this</h2>
-      <FilmsList films={otherFilms} />
+      <FilmsList films={similarGenreFilms} />
     </section>
   );
 }
