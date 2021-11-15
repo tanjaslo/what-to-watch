@@ -1,6 +1,6 @@
 import PageFooter from '../../page-footer/page-footer';
 import Logo from '../../logo/logo';
-import PageHeader from '../../page-header/page-header';
+import PageHeader from '../../containers/page-header/page-header';
 import SignInForm from '../../sign-in-form/sign-in-form';
 
 function LoginPage(): JSX.Element {

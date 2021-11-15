@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
 import Logo from '../../logo/logo';
-import PageHeader from '../../page-header/page-header';
+import PageHeader from '../../containers/page-header/page-header';
 import PageFooter from '../../page-footer/page-footer';
 import UserBlock from '../../user-block/user-block';
 

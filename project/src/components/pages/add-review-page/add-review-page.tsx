@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import type { Film } from '../../../types/film';
 import AddReviewForm from '../../add-review-form/add-review-form';
 import NotFoundPage from '../not-found-page/not-found-page';
-import FilmCardFullSection from '../../film-card-full-section/film-card-full-section';
+import FilmCardFullSection from '../../containers/film-card-full-section/film-card-full-section';
 import FilmCardHeader from '../../film-card-header/film-card-header';
 
 type AddReviewPageProps = {

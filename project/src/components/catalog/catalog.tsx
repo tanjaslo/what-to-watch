@@ -3,13 +3,13 @@ import { Film } from '../../types/film';
 import { DEFAULT_GENRE } from '../../const';
 import FilmsList from '../films-list/films-list';
 import GenresList from '../genres-list/genres-list';
+import CatalogSection from '../containers/catalog-section/catalog-section';
 
 type CatalogProps = {
   films: Film[];
-  isMainPage?: boolean;
 }
 
-function Catalog({films, isMainPage}: CatalogProps): JSX.Element {
+function Catalog({films}: CatalogProps): JSX.Element {
 
   const [activeGenre, setActiveGenre] = useState<string>(DEFAULT_GENRE);
 
@@ -22,21 +22,18 @@ function Catalog({films, isMainPage}: CatalogProps): JSX.Element {
   };
 
   return (
-    <section className="catalog">
-      <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-      {isMainPage ? (
-        <>
-          <GenresList activeGenre={activeGenre} onGenresItemClick={onGenresItemClick} />
-          <FilmsList films={filmsByGenre} />
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
-        </>
-      ) : (
-        <FilmsList films={films} />
-      )}
-    </section>
+    <CatalogSection>
+      <GenresList
+        activeGenre={activeGenre}
+        onGenresItemClick={onGenresItemClick}
+      />
+      <FilmsList
+        films={filmsByGenre}
+      />
+      <div className="catalog__more">
+        <button className="catalog__button" type="button">Show more</button>
+      </div>
+    </CatalogSection>
   );
 }
 

@@ -3,7 +3,7 @@ import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import FilmCardPoster from '../film-card-poster/film-card-poster';
 import Logo from '../logo/logo';
-import PageHeader from '../page-header/page-header';
+import PageHeader from '../containers/page-header/page-header';
 import UserBlock from '../user-block/user-block';
 
 type FilmCardHeaderProps = {

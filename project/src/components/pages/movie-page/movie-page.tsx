@@ -4,7 +4,7 @@ import type { Review } from '../../../types/review';
 import CatalogLikeThis from '../../catalog-like-this/catalog-like-this';
 import FilmCardFull from '../../film-card-full/film-card-full';
 import NotFoundPage from '../not-found-page/not-found-page';
-import PageContent from '../../page-content/page-content';
+import PageContent from '../../containers/page-content/page-content';
 import PageFooter from '../../page-footer/page-footer';
 
 type MoviePageProps = {

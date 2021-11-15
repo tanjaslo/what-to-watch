@@ -2,10 +2,10 @@ import { Film } from '../../types/film';
 import { Review } from '../../types/review';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
-import FilmCardFullSection from '../film-card-full-section/film-card-full-section';
+import FilmCardFullSection from '../containers/film-card-full-section/film-card-full-section';
 import FilmCardPoster from '../film-card-poster/film-card-poster';
 import Logo from '../logo/logo';
-import PageHeader from '../page-header/page-header';
+import PageHeader from '../containers/page-header/page-header';
 import Tabs from '../tabs/tabs';
 import UserBlock from '../user-block/user-block';
 
