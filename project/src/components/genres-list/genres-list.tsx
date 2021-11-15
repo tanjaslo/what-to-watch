@@ -1,12 +1,15 @@
 import classNames from 'classnames';
 import { SyntheticEvent } from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GENRES_LIST, DEFAULT_GENRE } from '../../const';
+import { DEFAULT_GENRE } from '../../const';
+import { films } from '../../mocks/films';
 
-function GenresList(): JSX.Element {
+type GenresListProps = {
+  activeGenre: string;
+  onGenresItemClick: (genre: string) => void;
+}
 
-  const [activeGenre, setActiveGenre] = useState<string>(DEFAULT_GENRE);
+function GenresList({activeGenre, onGenresItemClick}: GenresListProps): JSX.Element {
 
   const INITIAL_CLASSNAME = 'catalog__genres-item';
 
@@ -15,15 +18,23 @@ function GenresList(): JSX.Element {
     {'catalog__genres-item--active': activeGenre},
   );
 
+  const genres = Array.from(
+    films.reduce((acc, {genre}) => {
+      acc.add(genre);
+      return acc;
+    }, new Set()));
+
+  const genresList = [DEFAULT_GENRE, ...genres as string[]];
+
   const handleGenresItemClick = (evt: SyntheticEvent<HTMLElement>) => {
     evt.preventDefault();
     const newActiveGenre = evt.currentTarget.dataset.value as string;
-    setActiveGenre(newActiveGenre);
+    onGenresItemClick(newActiveGenre);
   };
 
   return (
     <ul className="catalog__genres-list">
-      {GENRES_LIST.map((genre) => (
+      {genresList.map((genre) => (
         <li
           className={genre === activeGenre
             ? activeClassName
