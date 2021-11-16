@@ -14,8 +14,7 @@ function Catalog({films}: CatalogProps): JSX.Element {
   const [activeGenre, setActiveGenre] = useState<string>(DEFAULT_GENRE);
 
   const filmsByGenre = activeGenre === DEFAULT_GENRE ?
-    films : films.filter(({genre}) =>
-      genre.slice(0, 4) === activeGenre.slice(0, 4));
+    films : films.filter(({genre}) => genre === activeGenre);
 
   const onGenresItemClick = (genre: string): void => {
     setActiveGenre(genre);
