@@ -1,24 +1,25 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Film } from '../../types/film';
 import VideoPreview from '../video-preview/video-preview';
 
 type FilmCardSmallProps = {
   film: Film;
-  onMouseEnter: (id: number) => void;
-  onMouseLeave: (id: null) => void;
-  isPlaying: boolean;
 }
 
-function FilmCardSmall({film, onMouseEnter, onMouseLeave, isPlaying}: FilmCardSmallProps): JSX.Element {
+function FilmCardSmall({film}: FilmCardSmallProps): JSX.Element {
   const {id, name, previewImage, previewVideoLink} = film;
-  //const handleMouseEnter = () => onMouseEnter(id);
-  //const handleMouseLeave = () => onMouseLeave(null);
+
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
+  const handleMouseEnter = () => setIsPlaying(true);
+  const handleMouseLeave = () => setIsPlaying(false);
 
   return (
     <article
       className="small-film-card catalog__films-card"
-      onMouseEnter={() => onMouseEnter(id)}
-      onMouseLeave={() => onMouseLeave(null)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="small-film-card__image">
         <VideoPreview
