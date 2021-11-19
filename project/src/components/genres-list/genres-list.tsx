@@ -28,7 +28,7 @@ function GenresList({activeGenre, onGenresItemClick}: GenresListProps): JSX.Elem
 
   const handleGenresItemClick = (evt: SyntheticEvent<HTMLElement>) => {
     evt.preventDefault();
-    const newActiveGenre = evt.currentTarget.dataset.value as string;
+    const newActiveGenre = evt.currentTarget.textContent as string;
     onGenresItemClick(newActiveGenre);
   };
 
@@ -44,7 +44,6 @@ function GenresList({activeGenre, onGenresItemClick}: GenresListProps): JSX.Elem
           <Link
             to={`#${genre}`}
             className="catalog__genres-link"
-            data-value={genre}
             onClick={handleGenresItemClick}
           >{genre}
           </Link>
