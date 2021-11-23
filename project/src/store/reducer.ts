@@ -16,7 +16,7 @@ const reducer = (state: State = initialState, action: Actions): State => {
     case ActionType.ChangeGenre: {
       return {
         ...state,
-        genre: payload.genre,
+        genre: payload,
       };
     }
     default:

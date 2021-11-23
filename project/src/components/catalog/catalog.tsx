@@ -1,4 +1,8 @@
-import { useState } from 'react';
+import { State } from '../../types/state';
+import { Actions } from '../../types/action';
+import { Dispatch } from 'redux';
+import { connect, ConnectedProps } from 'react-redux';
+import { ChangeGenre } from '../../store/action';
 import { Film } from '../../types/film';
 import { DEFAULT_GENRE } from '../../const';
 import FilmsList from '../films-list/films-list';
@@ -9,16 +13,25 @@ type CatalogProps = {
   films: Film[];
 }
 
-function Catalog({films}: CatalogProps): JSX.Element {
+const mapStateToProps = (state: State) => ({
+  activeGenre: state.genre,
+});
 
-  const [activeGenre, setActiveGenre] = useState<string>(DEFAULT_GENRE);
+const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+  onGenresItemClick(activeGenre: string) {
+    dispatch(ChangeGenre(activeGenre));
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & CatalogProps;
+
+function Catalog({films, activeGenre, onGenresItemClick}: ConnectedComponentProps): JSX.Element {
 
   const filmsByGenre = activeGenre === DEFAULT_GENRE ?
-    films : films.filter(({genre}) => genre === activeGenre);
-
-  const onGenresItemClick = (genre: string): void => {
-    setActiveGenre(genre);
-  };
+    films : films.filter((film) => film.genre === activeGenre);
 
   return (
     <CatalogSection>
@@ -36,4 +49,4 @@ function Catalog({films}: CatalogProps): JSX.Element {
   );
 }
 
-export default Catalog;
+export default connector(Catalog);

@@ -4,9 +4,7 @@ export enum ActionType {
 
 export type ChangeGenreAction = {
   type: ActionType.ChangeGenre;
-  payload: {
-    genre: string;
-  }
+  payload: string;
 }
 
 export type Actions = ChangeGenreAction;
