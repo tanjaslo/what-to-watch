@@ -1,5 +1,5 @@
-# Личный проект «Что посмотреть»
+# Personal project «what to watch»
 
 ---
 
-Репозиторий создан для обучения на профессиональном онлайн‑курсе «[React. Разработка сложных клиентских приложений](https://htmlacademy.ru/intensive/react)» от [HTML Academy](https://htmlacademy.ru).
+This repo was created for studying in [HTML Academy](https://htmlacademy.ru/intensive/react)
