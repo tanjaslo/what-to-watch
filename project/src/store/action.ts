@@ -1,7 +1,6 @@
-import { ActionType,
-  ChangeGenreAction } from '../types/action';
+import { ActionType } from '../types/action';
 
-export const ChangeGenre = (genre: string): ChangeGenreAction => ({
+export const changeGenre = (genre: string) => ({
   type: ActionType.ChangeGenre,
   payload: genre,
-});
+} as const);

@@ -1,10 +1,7 @@
+import { changeGenre } from '../store/action';
+
 export enum ActionType {
-  ChangeGenre = 'genre/ChangeGenre',
+  ChangeGenre = 'genre/changeGenre',
 }
 
-export type ChangeGenreAction = {
-  type: ActionType.ChangeGenre;
-  payload: string;
-}
-
-export type Actions = ChangeGenreAction;
+export type Actions = ReturnType<typeof changeGenre>;
