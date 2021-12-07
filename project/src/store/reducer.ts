@@ -6,6 +6,7 @@ import { films } from '../mocks/films';
 const initialState = {
   activeGenre: DEFAULT_GENRE,
   films: films.slice(1),
+  promoFilm: films[0],
   stepCount: INITIAL_FILMS_COUNT,
 };
 

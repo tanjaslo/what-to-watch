@@ -1,5 +1,5 @@
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import { AppRoute} from '../../const';
+import { AppRoute } from '../../const';
 import type { Film } from '../../types/film';
 import type { Review } from '../../types/review';
 import AddReviewPage from '../pages/add-review-page/add-review-page';
@@ -13,16 +13,14 @@ import UserPage from '../pages/user-page/user-page';
 type AppScreenProps = {
   films: Film[];
   reviews: Review[];
-}
+};
 
-function App({films, reviews}: AppScreenProps): JSX.Element {
+function App({ films, reviews }: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Root}>
-          <MainPage
-            films={films}
-          />
+          <MainPage />
         </Route>
         <Route exact path={AppRoute.Login}>
           <UserPage />
@@ -34,9 +32,7 @@ function App({films, reviews}: AppScreenProps): JSX.Element {
           <MoviePage films={films} reviews={reviews} />
         </Route>
         <Route exact path={AppRoute.AddReview}>
-          <AddReviewPage
-            films={films}
-          />
+          <AddReviewPage films={films} />
         </Route>
         <Route exact path={AppRoute.Player}>
           <PlayerPage films={films} />

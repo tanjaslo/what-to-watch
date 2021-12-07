@@ -1,17 +1,21 @@
-import { Film } from '../../types/film';
+import { State } from '../../types/state';
+import { ConnectedProps } from 'react-redux';
+import { connect } from 'react-redux';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import Logo from '../logo/logo';
 import PageHeader from '../containers/page-header/page-header';
 import Promo from '../promo/promo';
 import UserBlock from '../user-block/user-block';
 
-type FilmCardPromoProps = {
-  films: Film[];
-}
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function FilmCardPromo({films}: FilmCardPromoProps): JSX.Element {
-  const [promoFilm] = films;
+const mapStateToProps = ({ promoFilm }: State) => ({
+  promoFilm,
+});
 
+const connector = connect(mapStateToProps);
+
+function FilmCardPromo({ promoFilm }: PropsFromRedux): JSX.Element {
   return (
     <section className="film-card">
       <FilmCardBg film={promoFilm} />
@@ -23,10 +27,10 @@ function FilmCardPromo({films}: FilmCardPromoProps): JSX.Element {
         <UserBlock />
       </PageHeader>
 
-      <Promo promoFilm={promoFilm as Film}/>
-
+      <Promo promoFilm={promoFilm} />
     </section>
   );
 }
 
-export default FilmCardPromo;
+export { FilmCardPromo };
+export default connector(FilmCardPromo);
