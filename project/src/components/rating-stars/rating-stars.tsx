@@ -7,7 +7,7 @@ function RatingStars(): JSX.Element {
   //const ratings = Array.from({length: MAX_RATING}, (_, i) => i + 1).reverse();
   const [rating, setRating] = useState<number>(0);
 
-  const handleRatingChange = ({target}: ChangeEvent<HTMLInputElement>) => {
+  const handleRatingChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setRating(+target.value);
   };
 
@@ -21,22 +21,18 @@ function RatingStars(): JSX.Element {
           name="rating"
           id={`star-${starsCount}`}
           value={starsCount}
-          onChange = {handleRatingChange}
+          onChange={handleRatingChange}
           checked={rating === starsCount}
         />
-        <label
-          className="rating__label"
-          htmlFor={`star-${starsCount}`}
-        >Rating {starsCount}
+        <label className="rating__label" htmlFor={`star-${starsCount}`}>
+          Rating {starsCount}
         </label>
-      </Fragment>,
+      </Fragment>
     );
   }
   return (
     <div className="rating">
-      <div className="rating__stars">
-        {stars}
-      </div>
+      <div className="rating__stars">{stars}</div>
     </div>
   );
 }

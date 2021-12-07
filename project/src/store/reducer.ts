@@ -1,22 +1,34 @@
 import { Actions, ActionType } from '../types/action';
 import { State } from '../types/state';
-import { DEFAULT_GENRE } from '../const';
+import { DEFAULT_GENRE, INITIAL_FILMS_COUNT, STEP_COUNT } from '../const';
 import { films } from '../mocks/films';
 
 const initialState = {
-  genre: DEFAULT_GENRE,
+  activeGenre: DEFAULT_GENRE,
   films: films.slice(1),
+  stepCount: INITIAL_FILMS_COUNT,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
   const type = action.type;
-  const payload = action.payload;
 
   switch (type) {
     case ActionType.ChangeGenre: {
       return {
         ...state,
-        genre: payload,
+        activeGenre: action.payload,
+      };
+    }
+    case ActionType.IncrementStep: {
+      return {
+        ...state,
+        stepCount: state.stepCount + STEP_COUNT,
+      };
+    }
+    case ActionType.ResetStepCount: {
+      return {
+        ...state,
+        stepCount: initialState.stepCount,
       };
     }
     default:
@@ -24,4 +36,4 @@ const reducer = (state: State = initialState, action: Actions): State => {
   }
 };
 
-export {reducer};
+export { reducer };

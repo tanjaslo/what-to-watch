@@ -7,13 +7,11 @@ import { getGenresList, getUniqueGenres } from '../../utils';
 type GenresListProps = {
   activeGenre: string;
   onGenresItemClick: (genre: string) => void;
-  resetRenderedFilmsCount: () => void;
 };
 
 function GenresList({
   activeGenre,
   onGenresItemClick,
-  resetRenderedFilmsCount,
 }: GenresListProps): JSX.Element {
   const INITIAL_CLASSNAME = 'catalog__genres-item';
 
@@ -28,7 +26,6 @@ function GenresList({
     (newActiveGenre: string) => (evt: SyntheticEvent<HTMLElement>) => {
       evt.preventDefault();
       onGenresItemClick(newActiveGenre);
-      resetRenderedFilmsCount();
     };
 
   return (

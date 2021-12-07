@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { DEFAULT_GENRE } from './const';
 import { Film } from './types/film';
 
 export const formattedDate = (date: string): string =>
@@ -22,3 +23,10 @@ export const getUniqueGenres = (films: Film[]): string[] => {
 export const getGenresList =
   (defaultGenre: string, genres: string[]): string[] => (
     [defaultGenre, ...genres]);
+
+export const getFilteredFilms = (films: Film[], activeGenre: string): Film[] =>
+  activeGenre === DEFAULT_GENRE ? films : getFilmsByGenre(films, activeGenre);
+
+export const getFilmsByGenre =
+  (films: Film[], activeGenre: string): Film[] =>
+    films.filter((film) => film.genre === activeGenre);

@@ -11,7 +11,7 @@ import FilmCardDetails from './film-card-details/film-card-details';
 type TabListProps = {
   film: Film;
   reviews: Review[];
-}
+};
 
 const renderTabContent = (tabItem: string, film: Film, reviews: Review[]) => {
   switch (tabItem) {
@@ -27,15 +27,14 @@ const renderTabContent = (tabItem: string, film: Film, reviews: Review[]) => {
   }
 };
 
-function Tabs({film, reviews}: TabListProps): JSX.Element {
+function Tabs({ film, reviews }: TabListProps): JSX.Element {
   const [activeTab, setActiveTab] = useState<string>(TabItem.OVERVIEW);
 
   const INITIAL_CLASSNAME = 'film-nav__item';
 
-  const activeClassname = classNames(
-    INITIAL_CLASSNAME,
-    {'film-nav__item--active' : activeTab},
-  );
+  const activeClassname = classNames(INITIAL_CLASSNAME, {
+    'film-nav__item--active': activeTab,
+  });
 
   const tabsList = Object.values(TabItem);
 
@@ -49,31 +48,30 @@ function Tabs({film, reviews}: TabListProps): JSX.Element {
     <>
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          {
-            tabsList.map((item, i) => {
-              const tabName = `${item[0].toUpperCase()}${item.slice(1)}`;
+          {tabsList.map((item, i) => {
+            const tabName = `${item[0].toUpperCase()}${item.slice(1)}`;
 
-              return (
-                <li
-                  key={item+String(i)}
-                  className={item === activeTab
-                    ? activeClassname
-                    : INITIAL_CLASSNAME}
+            return (
+              <li
+                key={item + String(i)}
+                className={
+                  item === activeTab ? activeClassname : INITIAL_CLASSNAME
+                }
+              >
+                <Link
+                  className="film-nav__link"
+                  to={`#${item}`}
+                  data-value={item}
+                  onClick={handleTabItemClick}
                 >
-                  <Link
-                    className="film-nav__link"
-                    to={`#${item}`}
-                    data-value={item}
-                    onClick={handleTabItemClick}
-                  >{tabName}
-                  </Link>
-                </li>
-              );
-            })
-          }
+                  {tabName}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
-      { renderTabContent(activeTab, film, reviews) }
+      {renderTabContent(activeTab, film, reviews)}
     </>
   );
 }
