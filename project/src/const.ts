@@ -1,4 +1,6 @@
 export const DEFAULT_GENRE = 'All genres';
+export const INITIAL_FILMS_COUNT = 8;
+export const STEP = INITIAL_FILMS_COUNT;
 
 export const GENRES_LIST = [
   'All genres',

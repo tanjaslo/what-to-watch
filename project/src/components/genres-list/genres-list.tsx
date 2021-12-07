@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { SyntheticEvent } from 'react';
-import { Link } from 'react-router-dom';
 import { DEFAULT_GENRE } from '../../const';
 import { films } from '../../mocks/films';
 import { getGenresList, getUniqueGenres } from '../../utils';
@@ -8,11 +7,13 @@ import { getGenresList, getUniqueGenres } from '../../utils';
 type GenresListProps = {
   activeGenre: string;
   onGenresItemClick: (genre: string) => void;
+  resetRenderedFilmsCount: () => void;
 };
 
 function GenresList({
   activeGenre,
   onGenresItemClick,
+  resetRenderedFilmsCount,
 }: GenresListProps): JSX.Element {
   const INITIAL_CLASSNAME = 'catalog__genres-item';
 
@@ -23,11 +24,12 @@ function GenresList({
   const genres = getUniqueGenres(films);
   const genresList = getGenresList(DEFAULT_GENRE, genres);
 
-  const handleGenresItemClick = (evt: SyntheticEvent<HTMLElement>) => {
-    evt.preventDefault();
-    const newActiveGenre = evt.currentTarget.textContent as string;
-    onGenresItemClick(newActiveGenre);
-  };
+  const handleGenresItemClick =
+    (newActiveGenre: string) => (evt: SyntheticEvent<HTMLElement>) => {
+      evt.preventDefault();
+      onGenresItemClick(newActiveGenre);
+      resetRenderedFilmsCount();
+    };
 
   return (
     <ul className="catalog__genres-list">
@@ -38,13 +40,13 @@ function GenresList({
           }
           key={genre}
         >
-          <Link
-            to={`#${genre}`}
+          <a
+            href="/"
             className="catalog__genres-link"
-            onClick={handleGenresItemClick}
+            onClick={handleGenresItemClick(genre)}
           >
             {genre}
-          </Link>
+          </a>
         </li>
       ))}
     </ul>
