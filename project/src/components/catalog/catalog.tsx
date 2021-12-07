@@ -15,6 +15,9 @@ type CatalogProps = {
   films: Film[];
 };
 
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & CatalogProps;
+
 const mapStateToProps = (state: State) => ({
   activeGenre: state.genre,
 });
@@ -26,9 +29,6 @@ const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & CatalogProps;
 
 function Catalog({
   films,
@@ -50,7 +50,7 @@ function Catalog({
     setFilmsCount(INITIAL_FILMS_COUNT);
   };
 
-  const onButtonClick = () => {
+  const onShowMoreBtnClick = () => {
     setFilmsCount((count) => count + STEP);
   };
 
@@ -62,7 +62,7 @@ function Catalog({
         resetRenderedFilmsCount={showFilmsInitialCount}
       />
       <FilmsList films={filmsToRender} />
-      {isButtonVisible ? <ShowMore onClick={onButtonClick} /> : null}
+      {isButtonVisible ? <ShowMore onClick={onShowMoreBtnClick} /> : null}
     </CatalogSection>
   );
 }
