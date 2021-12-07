@@ -1,29 +1,33 @@
 import { Redirect, useParams } from 'react-router';
-import { AppRoute } from '../../../const';
-import type { Film } from '../../../types/film';
+import { AppRoute } from '../../const';
+import type { Film } from '../../types/film';
 
 type PlayerPageProps = {
   films: Film[];
-}
+};
 
-function PlayerPage({films}: PlayerPageProps): JSX.Element {
-  const {id}: {id: string} = useParams();
-  const currentFilm = films.find((film) => film.id === +(id));
+function PlayerPage({ films }: PlayerPageProps): JSX.Element {
+  const { id }: { id: string } = useParams();
+  const currentFilm = films.find((film) => film.id === +id);
 
   if (currentFilm) {
-    const {posterImage, videoLink} = currentFilm;
+    const { posterImage, videoLink } = currentFilm;
 
     return (
       <div className="player">
-        <video src={videoLink} className="player__video" poster={posterImage}/>
+        <video src={videoLink} className="player__video" poster={posterImage} />
 
-        <button type="button" className="player__exit">Exit</button>
+        <button type="button" className="player__exit">
+          Exit
+        </button>
 
         <div className="player__controls">
           <div className="player__controls-row">
             <div className="player__time">
-              <progress className="player__progress" value="30" max="100"></progress>
-              <div className="player__toggler" style={{left: '30%'}}>Toggler</div>
+              <progress className="player__progress" value="30" max="100" />
+              <div className="player__toggler" style={{ left: '30%' }}>
+                Toggler
+              </div>
             </div>
             <div className="player__time-value">1:30:29</div>
           </div>
