@@ -3,21 +3,16 @@ import { Actions } from '../../types/action';
 import { Dispatch } from 'redux';
 import { connect, ConnectedProps } from 'react-redux';
 import { changeGenre, resetStepCount } from '../../store/action';
-import { Film } from '../../types/film';
 import FilmsList from '../films-list/films-list';
 import GenresList from '../genres-list/genres-list';
 import CatalogSection from '../containers/catalog-section/catalog-section';
 import ShowMore from '../show-more/show-more';
 import { getFilteredFilms } from '../../utils';
 
-type CatalogProps = {
-  films: Film[];
-};
-
 type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & CatalogProps;
 
-const mapStateToProps = ({ activeGenre, stepCount }: State) => ({
+const mapStateToProps = ({ films, activeGenre, stepCount }: State) => ({
+  films,
   activeGenre,
   stepCount,
 });
@@ -36,7 +31,7 @@ function Catalog({
   activeGenre,
   stepCount,
   onGenresItemClick,
-}: ConnectedComponentProps): JSX.Element {
+}: PropsFromRedux): JSX.Element {
   const filmsByGenre = getFilteredFilms(films, activeGenre);
   const filmsToRender = filmsByGenre.slice(0, stepCount);
   const isButtonVisible = filmsByGenre.length > filmsToRender.length;

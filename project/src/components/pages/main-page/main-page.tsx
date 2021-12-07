@@ -6,16 +6,14 @@ import PageFooter from '../../page-footer/page-footer';
 
 type MainPageProps = {
   films: Film[];
-}
+};
 
-function MainPage({films}: MainPageProps): JSX.Element {
-  const mainFilmsList = films.slice(1, films.length);
-
+function MainPage({ films }: MainPageProps): JSX.Element {
   return (
     <>
       <FilmCardPromo films={films} />
       <PageContent>
-        <Catalog films={mainFilmsList} />
+        <Catalog />
         <PageFooter />
       </PageContent>
     </>
