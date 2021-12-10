@@ -3,16 +3,14 @@ import FilmCardSmall from '../film-card-small/film-card-small';
 
 type FilmsListProps = {
   films: Film[];
-}
+};
 
-function FilmsList({films}: FilmsListProps): JSX.Element {
+function FilmsList({ films }: FilmsListProps): JSX.Element {
   return (
     <div className="catalog__films-list">
       {films.map((film) => (
-        <FilmCardSmall
-          film={film}
-          key={film.id}
-        />))}
+        <FilmCardSmall key={film.id} {...{ film }} />
+      ))}
     </div>
   );
 }

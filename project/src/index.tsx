@@ -16,5 +16,5 @@ ReactDOM.render(
       <App films={films} reviews={reviews} />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

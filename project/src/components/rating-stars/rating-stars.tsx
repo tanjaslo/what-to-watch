@@ -27,7 +27,7 @@ function RatingStars(): JSX.Element {
         <label className="rating__label" htmlFor={`star-${starsCount}`}>
           Rating {starsCount}
         </label>
-      </Fragment>
+      </Fragment>,
     );
   }
   return (
