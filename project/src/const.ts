@@ -1,3 +1,7 @@
+export const BACKEND_URL = 'https://8.react.pages.academy/wtw';
+export const REQUEST_TIMEOUT = 5000;
+export const AUTH_TOKEN_KEY_NAME = 'wtw-autorization-token';
+
 export const DEFAULT_GENRE = 'All genres';
 export const INITIAL_FILMS_COUNT = 8;
 export const STEP_COUNT = INITIAL_FILMS_COUNT;

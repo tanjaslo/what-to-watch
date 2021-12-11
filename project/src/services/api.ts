@@ -1,7 +1,6 @@
-import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
-
-const BACKEND_URL = 'https://8.react.pages.academy/wtw';
-const REQUEST_TIMEOUT = 5000;
+import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
+import { getToken } from './token';
+import { BACKEND_URL, REQUEST_TIMEOUT } from '../const';
 
 enum HttpCode {
   Unauthorized = 401,
@@ -26,6 +25,18 @@ export const createAPI = (onUnauthorized: UnauthorizedCallback): AxiosInstance =
       }
 
       return Promise.reject(error);
+    },
+  );
+
+  api.interceptors.request.use(
+    (config: AxiosRequestConfig) => {
+      const currentToken = getToken();
+
+      if (currentToken) {
+        config.headers['x-token'] = currentToken;
+      }
+
+      return config;
     },
   );
 
