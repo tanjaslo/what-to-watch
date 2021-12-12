@@ -1,4 +1,5 @@
 import { ActionType } from '../types/action';
+import { Film } from '../types/film';
 
 export const changeGenre = (genre: string) => ({
   type: ActionType.ChangeGenre,
@@ -12,4 +13,9 @@ export const incrementStep = (stepCount: number) => ({
 
 export const resetStepCount = () => ({
   type: ActionType.ResetStepCount,
+} as const);
+
+export const loadFilms = (films: Film[]) => ({
+  type: ActionType.LoadFilms,
+  payload: films,
 } as const);

@@ -32,6 +32,9 @@ const reducer = (state: State = initialState, action: Actions): State => {
         stepCount: initialState.stepCount,
       };
     }
+    case ActionType.LoadFilms: {
+      return { ...state, films };
+    }
     default:
       return state;
   }

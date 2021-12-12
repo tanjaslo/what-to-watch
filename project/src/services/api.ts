@@ -24,16 +24,18 @@ export const createAPI = (onUnauthorized: UnauthorizedCallback): AxiosInstance =
         return onUnauthorized();
       }
 
-      return Promise.reject(error);
+      return Promise.reject(error); // можно обработать ошибку, добавить тост и т.д.
     },
   );
 
+  // 4** считается ошибкой по умолчанию в axios, в отличие от fetch, но можно сконфигурировать
+  // здесь можем реализовать доп. логирование, добавить заголовки и т.д.
   api.interceptors.request.use(
     (config: AxiosRequestConfig) => {
       const currentToken = getToken();
 
       if (currentToken) {
-        config.headers['x-token'] = currentToken;
+        config.headers['x-token'] = currentToken; // добавляем в заголовке конфига наш токен из localStorage
       }
 
       return config;
