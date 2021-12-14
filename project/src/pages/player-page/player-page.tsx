@@ -1,12 +1,17 @@
 import { Redirect, useParams } from 'react-router';
+import { connect, ConnectedProps } from 'react-redux';
+import { State } from '../../types/state';
 import { AppRoute } from '../../const';
-import type { Film } from '../../types/film';
 
-type PlayerPageProps = {
-  films: Film[];
-};
+const mapStateToProps = ({ films }: State) => ({
+  films,
+});
 
-function PlayerPage({ films }: PlayerPageProps): JSX.Element {
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function PlayerPage({ films }: PropsFromRedux): JSX.Element {
   const { id }: { id: string } = useParams();
   const currentFilm = films.find((film) => film.id === +id);
 
@@ -55,4 +60,5 @@ function PlayerPage({ films }: PlayerPageProps): JSX.Element {
   return <Redirect to={AppRoute.Root} />;
 }
 
-export default PlayerPage;
+export { PlayerPage };
+export default connector(PlayerPage);

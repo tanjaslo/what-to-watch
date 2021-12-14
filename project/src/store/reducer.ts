@@ -1,13 +1,16 @@
 import { Actions, ActionType } from '../types/action';
 import { State } from '../types/state';
-import { DEFAULT_GENRE, INITIAL_FILMS_COUNT, STEP_COUNT } from '../const';
-import { films } from '../mocks/films';
+import { AuthorizationStatus, DEFAULT_GENRE, INITIAL_FILMS_COUNT, STEP_COUNT } from '../const';
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
-  films: films.slice(1),
-  promoFilm: films[0],
   stepCount: INITIAL_FILMS_COUNT,
+  films: [],
+  promoFilm: null,
+  currentFilm: null,
+  reviews: [],
+  authStatus: AuthorizationStatus.Unknown,
+  isDataLoaded: false,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
@@ -33,8 +36,37 @@ const reducer = (state: State = initialState, action: Actions): State => {
       };
     }
     case ActionType.LoadFilms: {
-      return { ...state, films };
+      return {
+        ...state,
+        films: action.payload,
+        isDataLoaded: true,
+      };
     }
+    case ActionType.LoadPromoFilm: {
+      return {
+        ...state,
+        promoFilm: action.payload,
+      };
+    }
+    case ActionType.LoadFilm: {
+      return {
+        ...state,
+        currentFilm: action.payload,
+      };
+    }
+    case ActionType.LoadReviews: {
+      return {
+        ...state,
+        reviews: action.payload,
+      };
+    }
+    case ActionType.RequireAuthorization:
+      return {
+        ...state,
+        authStatus: action.payload,
+      };
+    case ActionType.RequireLogout:
+      return { ...state, authStatus: AuthorizationStatus.NoAuth };
     default:
       return state;
   }

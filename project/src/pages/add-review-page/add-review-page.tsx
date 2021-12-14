@@ -1,15 +1,20 @@
 import { useParams } from 'react-router-dom';
-import type { Film } from '../../types/film';
+import { connect, ConnectedProps } from 'react-redux';
+import { State } from '../../types/state';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
 import NotFoundPage from '../not-found-page/not-found-page';
 import FilmCardFullSection from '../../components/containers/film-card-full-section/film-card-full-section';
 import FilmCardHeader from '../../components/film-card-header/film-card-header';
 
-type AddReviewPageProps = {
-  films: Film[];
-};
+const mapStateToProps = ({ films }: State) => ({
+  films,
+});
 
-function AddReviewPage({ films }: AddReviewPageProps): JSX.Element {
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function AddReviewPage({ films }: PropsFromRedux): JSX.Element {
   const { id }: { id: string } = useParams();
   const currentFilm = films.find((film) => film.id === +id);
 
@@ -24,4 +29,5 @@ function AddReviewPage({ films }: AddReviewPageProps): JSX.Element {
   return <NotFoundPage />;
 }
 
-export default AddReviewPage;
+export { AddReviewPage };
+export default connector(AddReviewPage);

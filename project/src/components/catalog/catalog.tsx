@@ -9,8 +9,6 @@ import CatalogSection from '../containers/catalog-section/catalog-section';
 import ShowMore from '../show-more/show-more';
 import { getFilteredFilms } from '../../utils';
 
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
 const mapStateToProps = ({ films, activeGenre, stepCount }: State) => ({
   films,
   activeGenre,
@@ -26,6 +24,8 @@ const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
 function Catalog({
   films,
   activeGenre,
@@ -38,10 +38,7 @@ function Catalog({
 
   return (
     <CatalogSection>
-      <GenresList
-        activeGenre={activeGenre}
-        onGenresItemClick={onGenresItemClick}
-      />
+      <GenresList onGenresItemClick={onGenresItemClick} />
       <FilmsList films={filmsToRender} />
       {isButtonVisible && <ShowMore />}
     </CatalogSection>

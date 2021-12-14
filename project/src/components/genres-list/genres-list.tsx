@@ -1,18 +1,29 @@
 import classNames from 'classnames';
+import { connect, ConnectedProps } from 'react-redux';
 import { SyntheticEvent } from 'react';
 import { DEFAULT_GENRE } from '../../const';
-import { films } from '../../mocks/films';
+import { State } from '../../types/state';
 import { getGenresList, getUniqueGenres } from '../../utils';
 
+const mapStateToProps = ({ films, activeGenre }: State) => ({
+  films,
+  activeGenre,
+});
+
 type GenresListProps = {
-  activeGenre: string;
   onGenresItemClick: (genre: string) => void;
 };
 
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & GenresListProps;
+
 function GenresList({
+  films,
   activeGenre,
   onGenresItemClick,
-}: GenresListProps): JSX.Element {
+}: ConnectedComponentProps): JSX.Element {
   const INITIAL_CLASSNAME = 'catalog__genres-item';
 
   const activeClassName = classNames(INITIAL_CLASSNAME, {
@@ -50,4 +61,5 @@ function GenresList({
   );
 }
 
-export default GenresList;
+export { GenresList };
+export default connector(GenresList);

@@ -1,23 +1,24 @@
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { connect, ConnectedProps } from 'react-redux';
+import { State } from '../../types/state';
+import { AuthorizationStatus } from '../../const';
+import UserAuth from './user-auth/user-auth';
+import UserGuest from './user-guest/user-guest';
 
-function UserBlock(): JSX.Element {
+const mapStateToProps = ({ authStatus }: State) => ({
+  authStatus,
+});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function UserBlock({ authStatus }: PropsFromRedux): JSX.Element {
   return (
-    <ul className="user-block">
-      <li className="user-block__item">
-        <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-        </div>
-      </li>
-      <li className="user-block__item">
-        <Link
-          className="user-block__link"
-          to={AppRoute.Root}
-        >Sign out
-        </Link>
-      </li>
-    </ul>
+    <>
+      {authStatus === AuthorizationStatus.Auth ? <UserAuth /> : <UserGuest />}
+    </>
   );
 }
 
-export default UserBlock;
+export { UserBlock };
+export default connector(UserBlock);

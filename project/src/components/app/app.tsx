@@ -1,24 +1,34 @@
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import type { Film } from '../../types/film';
-import type { Review } from '../../types/review';
+import { Switch, Route, Router as BrowserRouter } from 'react-router-dom';
+import { ConnectedProps } from 'react-redux';
+import { connect } from 'react-redux';
+import { State } from '../../types/state';
+import { AppRoute } from '../../const';
+import browserHistory from '../../browser-history';
 import AddReviewPage from '../../pages/add-review-page/add-review-page';
 import MainPage from '../../pages/main-page/main-page';
-import MoviePage from '../../pages/movie-page/movie-page';
+import FilmPage from '../../pages/film-page/film-page';
 import MyListPage from '../../pages/my-list-page/my-list-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PlayerPage from '../../pages/player-page/player-page';
 import UserPage from '../../pages/user-page/user-page';
 import PrivateRoute from '../private-route/private-route';
+import LoadingScreen from '../loading-screen/loading-screen';
 
-type AppScreenProps = {
-  films: Film[];
-  reviews: Review[];
-};
+const mapStateToProps = ({ isDataLoaded }: State) => ({
+  isDataLoaded,
+});
 
-function App({ films, reviews }: AppScreenProps): JSX.Element {
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function App({ isDataLoaded }: PropsFromRedux): JSX.Element {
+  if (!isDataLoaded) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.Root}>
           <MainPage />
@@ -29,20 +39,18 @@ function App({ films, reviews }: AppScreenProps): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyListPage films={films} />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
+          render={() => <MyListPage />}
         />
         <Route exact path={AppRoute.Movie}>
-          <MoviePage films={films} reviews={reviews} />
+          <FilmPage />
         </Route>
         <PrivateRoute
           exact
           path={AppRoute.AddReview}
-          render={() => <AddReviewPage films={films} />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
+          render={() => <AddReviewPage />}
         />
         <Route exact path={AppRoute.Player}>
-          <PlayerPage films={films} />
+          <PlayerPage />
         </Route>
         <Route>
           <NotFoundPage />
@@ -52,4 +60,5 @@ function App({ films, reviews }: AppScreenProps): JSX.Element {
   );
 }
 
-export default App;
+export { App };
+export default connector(App);

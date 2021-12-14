@@ -5,12 +5,18 @@ import PageFooter from '../../components/page-footer/page-footer';
 import UserBlock from '../../components/user-block/user-block';
 import CatalogSection from '../../components/containers/catalog-section/catalog-section';
 import FilmsList from '../../components/films-list/films-list';
+import { State } from '../../types/state';
+import { connect, ConnectedProps } from 'react-redux';
 
-type MyListPageProps = {
-  films: Film[];
-};
+const mapStateToProps = ({ films }: State) => ({
+  films,
+});
 
-function MyListPage({ films }: MyListPageProps): JSX.Element {
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function MyListPage({ films }: PropsFromRedux): JSX.Element {
   const myFilmsList = films.filter((film) => film.isFavorite);
 
   return (
@@ -27,4 +33,5 @@ function MyListPage({ films }: MyListPageProps): JSX.Element {
   );
 }
 
-export default MyListPage;
+export { MyListPage };
+export default connector(MyListPage);

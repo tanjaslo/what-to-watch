@@ -5,6 +5,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
     "axios": "^0.21.1",
+    "camelcase-keys": "^7.0.1",
     "classnames": "^2.3.1",
     "dayjs": "^1.10.7",
     "history": "^4.10.1",
@@ -37,6 +38,13 @@
           "functions": "always-multiline",
           "imports": "always-multiline",
           "objects": "always-multiline"
+        }
+      ],
+      "react/jsx-curly-newline": [
+        "error",
+        {
+          "multiline": "consistent",
+          "singleline": "never"
         }
       ]
     }
