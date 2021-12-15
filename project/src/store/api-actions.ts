@@ -6,13 +6,14 @@ import {
   loadReviews,
   redirectToRoute,
   requireAuthorization,
-  requireLogout
+  setUserData,
+  requireLogout,
 } from './action';
 import { ThunkActionResult } from '../types/action';
 import { AuthData } from '../types/auth-data';
 import { Film } from '../types/film';
 import { Review } from '../types/review';
-import { User } from '../types/user';
+import { ServerUser } from '../types/user';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 
@@ -42,21 +43,28 @@ export const fetchReviews = (id: string): ThunkActionResult =>
 
 export const checkAuth = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get<User>(APIRoute.Login);
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    try {
+      const { data } = await api.get<ServerUser>(APIRoute.Login);
+      dispatch(setUserData(camelcaseKeys(data)));
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    } catch (error) {
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+    }
   };
 
 export const login = (authData: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.post<User>(APIRoute.Login, authData);
+    const { data } = await api.post<ServerUser>(APIRoute.Login, authData);
     saveToken(data.token);
-    dispatch(redirectToRoute(AppRoute.Root));
+    dispatch(setUserData(camelcaseKeys(data)));
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
   };
 
 export const logout = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    api.delete(APIRoute.Logout);
+    await api.delete(APIRoute.Logout);
     dropToken();
     dispatch(requireLogout());
+    dispatch(setUserData(null));
+    dispatch(redirectToRoute(AppRoute.Root));
   };

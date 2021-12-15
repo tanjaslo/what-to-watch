@@ -10,6 +10,7 @@ const initialState = {
   currentFilm: null,
   reviews: [],
   authStatus: AuthorizationStatus.Unknown,
+  user: null,
   isDataLoaded: false,
 };
 
@@ -17,56 +18,57 @@ const reducer = (state: State = initialState, action: Actions): State => {
   const type = action.type;
 
   switch (type) {
-    case ActionType.ChangeGenre: {
+    case ActionType.ChangeGenre:
       return {
         ...state,
         activeGenre: action.payload,
       };
-    }
-    case ActionType.IncrementStep: {
+    case ActionType.IncrementStep:
       return {
         ...state,
         stepCount: state.stepCount + STEP_COUNT,
       };
-    }
-    case ActionType.ResetStepCount: {
+    case ActionType.ResetStepCount:
       return {
         ...state,
         stepCount: initialState.stepCount,
       };
-    }
-    case ActionType.LoadFilms: {
+    case ActionType.LoadFilms:
       return {
         ...state,
         films: action.payload,
         isDataLoaded: true,
       };
-    }
-    case ActionType.LoadPromoFilm: {
+    case ActionType.LoadPromoFilm:
       return {
         ...state,
         promoFilm: action.payload,
       };
-    }
-    case ActionType.LoadFilm: {
+    case ActionType.LoadFilm:
       return {
         ...state,
         currentFilm: action.payload,
       };
-    }
-    case ActionType.LoadReviews: {
+    case ActionType.LoadReviews:
       return {
         ...state,
         reviews: action.payload,
       };
-    }
     case ActionType.RequireAuthorization:
       return {
         ...state,
         authStatus: action.payload,
       };
     case ActionType.RequireLogout:
-      return { ...state, authStatus: AuthorizationStatus.NoAuth };
+      return {
+        ...state,
+        authStatus: AuthorizationStatus.NoAuth,
+      };
+    case ActionType.SetUserData:
+      return {
+        ...state,
+        user: action.payload,
+      };
     default:
       return state;
   }

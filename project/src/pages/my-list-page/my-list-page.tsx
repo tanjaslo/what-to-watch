@@ -1,8 +1,5 @@
-import type { Film } from '../../types/film';
-import Logo from '../../components/logo/logo';
 import PageHeader from '../../components/containers/page-header/page-header';
 import PageFooter from '../../components/page-footer/page-footer';
-import UserBlock from '../../components/user-block/user-block';
 import CatalogSection from '../../components/containers/catalog-section/catalog-section';
 import FilmsList from '../../components/films-list/films-list';
 import { State } from '../../types/state';
@@ -21,10 +18,7 @@ function MyListPage({ films }: PropsFromRedux): JSX.Element {
 
   return (
     <div className="user-page">
-      <PageHeader title={'MyList'} userPageHead>
-        <Logo />
-        <UserBlock />
-      </PageHeader>
+      <PageHeader title={'MyList'} userPageHead />
       <CatalogSection>
         <FilmsList films={myFilmsList} />
       </CatalogSection>

@@ -1,18 +1,12 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import Logo from '../../components/logo/logo';
 import PageHeader from '../../components/containers/page-header/page-header';
 import PageFooter from '../../components/page-footer/page-footer';
-import UserBlock from '../../components/user-block/user-block';
 
 function NotFoundPage(): JSX.Element {
   return (
     <div className="user-page">
-      <PageHeader userPageHead>
-        <Logo />
-        <UserBlock />
-      </PageHeader>
-
+      <PageHeader userPageHead />
       <main className="page__main" style={{ minHeight: '100vh' }}>
         <div className="page-content" style={{ textAlign: 'center' }}>
           <h1>

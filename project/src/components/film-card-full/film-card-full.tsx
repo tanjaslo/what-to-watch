@@ -4,18 +4,16 @@ import FilmCardBg from '../film-card-bg/film-card-bg';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 import FilmCardFullSection from '../containers/film-card-full-section/film-card-full-section';
 import FilmCardPoster from '../film-card-poster/film-card-poster';
-import Logo from '../logo/logo';
 import PageHeader from '../containers/page-header/page-header';
 import Tabs from '../tabs/tabs';
-import UserBlock from '../user-block/user-block';
 
 type FilmCardFullProps = {
   film: Film;
   reviews: Review[];
-}
+};
 
-function FilmCardFull({film, reviews}: FilmCardFullProps): JSX.Element {
-  const {name, genre, released} = film;
+function FilmCardFull({ film, reviews }: FilmCardFullProps): JSX.Element {
+  const { name, genre, released } = film;
 
   return (
     <FilmCardFullSection>
@@ -23,10 +21,7 @@ function FilmCardFull({film, reviews}: FilmCardFullProps): JSX.Element {
         <FilmCardBg film={film} />
 
         <h1 className="visually-hidden">WTW</h1>
-        <PageHeader filmCardHead>
-          <Logo />
-          <UserBlock />
-        </PageHeader>
+        <PageHeader filmCardHead />
 
         <div className="film-card__wrap">
           <div className="film-card__desc">

@@ -42,7 +42,7 @@ function FilmPage({
   useEffect(() => {
     loadFilm(id);
     loadReviews(id);
-  }, [id]);
+  }, [loadFilm, loadReviews, id]);
 
   if (currentFilm) {
     return (

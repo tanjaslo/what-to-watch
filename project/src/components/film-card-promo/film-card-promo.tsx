@@ -5,10 +5,8 @@ import { ConnectedProps } from 'react-redux';
 import { connect } from 'react-redux';
 import { fetchPromoFilm } from '../../store/api-actions';
 import FilmCardBg from '../film-card-bg/film-card-bg';
-import Logo from '../logo/logo';
 import PageHeader from '../containers/page-header/page-header';
 import Promo from '../promo/promo';
-import UserBlock from '../user-block/user-block';
 
 const mapStateToProps = ({ promoFilm }: State) => ({
   promoFilm,
@@ -33,7 +31,7 @@ function FilmCardPromo({
   }, [loadPromoFilm]);
 
   if (!promoFilm) {
-    return <></>;
+    return <PageHeader />;
   }
 
   return (
@@ -42,10 +40,7 @@ function FilmCardPromo({
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <PageHeader filmCardHead>
-        <Logo />
-        <UserBlock />
-      </PageHeader>
+      <PageHeader filmCardHead />
 
       <Promo promoFilm={promoFilm} />
     </section>

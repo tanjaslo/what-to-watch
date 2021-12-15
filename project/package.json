@@ -40,13 +40,7 @@
           "objects": "always-multiline"
         }
       ],
-      "react/jsx-curly-newline": [
-        "error",
-        {
-          "multiline": "consistent",
-          "singleline": "never"
-        }
-      ]
+      "react/jsx-curly-newline": "off"
     }
   },
   "browserslist": {

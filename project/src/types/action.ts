@@ -1,6 +1,6 @@
 import { ThunkAction, ThunkDispatch } from '@reduxjs/toolkit';
 import {
-  AxiosInstance
+  AxiosInstance,
 } from 'axios';
 import { State } from '../types/state';
 import {
@@ -11,9 +11,10 @@ import {
   loadFilm,
   loadReviews,
   resetStepCount,
+  redirectToRoute,
   requireAuthorization,
   requireLogout,
-  redirectToRoute,
+  setUserData,
 } from '../store/action';
 
 export enum ActionType {
@@ -24,9 +25,10 @@ export enum ActionType {
   LoadPromoFilm = 'data/loadPromoFilm',
   LoadFilm = 'data/loadFilm',
   LoadReviews = 'data/loadReviews',
+  Redirect = 'route/redirect',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
-  Redirect = 'route/redirect',
+  SetUserData = 'user/setUserData',
 }
 
 export type Actions =
@@ -37,9 +39,11 @@ export type Actions =
   ReturnType<typeof loadPromoFilm> |
   ReturnType<typeof loadFilm> |
   ReturnType<typeof loadReviews> |
+  ReturnType<typeof redirectToRoute> |
   ReturnType<typeof requireAuthorization> |
   ReturnType<typeof requireLogout> |
-  ReturnType<typeof redirectToRoute>;
+  ReturnType<typeof setUserData>;
+
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
 

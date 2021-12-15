@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { reducer } from './store/reducer';
 import { requireAuthorization } from './store/action';
-import { fetchFilms, checkAuth } from './store/api-actions';
+import { checkAuth, fetchFilms } from './store/api-actions';
 import { redirect } from './store/middlewares/redirect';
 import { createAPI } from './services/api';
 import { ThunkAppDispatch } from './types/action';

@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { DEFAULT_GENRE } from './const';
+import { AuthorizationStatus, DEFAULT_GENRE } from './const';
 import { Film } from './types/film';
 
 export const formattedDate = (date: string): string =>
@@ -30,3 +30,6 @@ export const getFilteredFilms = (films: Film[], activeGenre: string): Film[] =>
 export const getFilmsByGenre =
   (films: Film[], activeGenre: string): Film[] =>
     films.filter((film) => film.genre === activeGenre);
+
+export const isCheckedAuth = (authStatus: AuthorizationStatus): boolean =>
+  authStatus === AuthorizationStatus.Auth;

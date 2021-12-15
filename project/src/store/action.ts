@@ -1,7 +1,8 @@
 import { ActionType } from '../types/action';
 import { Film } from '../types/film';
-import { AppRoute, AuthorizationStatus } from '../const';
 import { Review } from '../types/review';
+import { User } from '../types/user';
+import { AppRoute, AuthorizationStatus } from '../const';
 
 export const changeGenre = (genre: string) => ({
   type: ActionType.ChangeGenre,
@@ -37,6 +38,11 @@ export const loadReviews = (reviews: Review[]) => ({
   payload: reviews,
 } as const);
 
+export const redirectToRoute = (url: AppRoute) => ({
+  type: ActionType.Redirect,
+  payload: url,
+} as const);
+
 export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
   type: ActionType.RequireAuthorization,
   payload: authStatus,
@@ -46,7 +52,7 @@ export const requireLogout = () => ({
   type: ActionType.RequireLogout,
 } as const);
 
-export const redirectToRoute = (url: AppRoute) => ({
-  type: ActionType.Redirect,
-  payload: url,
+export const setUserData = (userData: User | null) => ({
+  type: ActionType.SetUserData,
+  payload: userData,
 } as const);
