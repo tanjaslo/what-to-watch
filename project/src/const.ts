@@ -29,7 +29,7 @@ export enum AppRoute {
   AddReview = '/films/:id/review',
   Login = '/login',
   Movie = '/films/:id',
-  MyList = '/mylist',
+  MyList = '/my-list',
   Player = '/player/:id',
   Root = '/',
 }
@@ -43,7 +43,13 @@ export enum AuthorizationStatus {
 export enum APIRoute {
   Films = '/films',
   Promo = '/promo',
+  MyList = '/favorite',
   Reviews = '/comments',
   Login = '/login',
   Logout = '/logout',
+}
+
+export enum FavoriteStatus {
+  True = 1,
+  False = 0
 }

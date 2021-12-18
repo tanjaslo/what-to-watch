@@ -1,26 +1,35 @@
+import { connect, ConnectedProps } from 'react-redux';
+import { ThunkAppDispatch } from '../../types/action';
+import { State } from '../../types/state';
+import { fetchMyList } from '../../store/api-actions';
 import PageHeader from '../../components/containers/page-header/page-header';
 import PageFooter from '../../components/page-footer/page-footer';
 import CatalogSection from '../../components/containers/catalog-section/catalog-section';
 import FilmsList from '../../components/films-list/films-list';
-import { State } from '../../types/state';
-import { connect, ConnectedProps } from 'react-redux';
 
-const mapStateToProps = ({ films }: State) => ({
-  films,
+const mapStateToProps = ({ myListFilms }: State) => ({
+  myListFilms,
 });
 
-const connector = connect(mapStateToProps);
+const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
+  loadMyListFilms: () => {
+    dispatch(fetchMyList());
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function MyListPage({ films }: PropsFromRedux): JSX.Element {
-  const myFilmsList = films.filter((film) => film.isFavorite);
-
+function MyListPage({
+  myListFilms,
+  loadMyListFilms,
+}: PropsFromRedux): JSX.Element {
   return (
     <div className="user-page">
       <PageHeader title={'MyList'} userPageHead />
       <CatalogSection>
-        <FilmsList films={myFilmsList} />
+        <FilmsList films={myListFilms} />
       </CatalogSection>
       <PageFooter />
     </div>

@@ -9,7 +9,9 @@ import {
   loadFilms,
   loadPromoFilm,
   loadFilm,
+  loadMyList,
   loadReviews,
+  updateFilmStatus,
   resetStepCount,
   redirectToRoute,
   requireAuthorization,
@@ -24,7 +26,9 @@ export enum ActionType {
   LoadFilms = 'data/loadFilms',
   LoadPromoFilm = 'data/loadPromoFilm',
   LoadFilm = 'data/loadFilm',
+  LoadMyList = 'data/loadMyList',
   LoadReviews = 'data/loadReviews',
+  UpdateFilmStatus = 'data/updateFilmStatus',
   Redirect = 'route/redirect',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
@@ -39,6 +43,8 @@ export type Actions =
   ReturnType<typeof loadPromoFilm> |
   ReturnType<typeof loadFilm> |
   ReturnType<typeof loadReviews> |
+  ReturnType<typeof loadMyList> |
+  ReturnType<typeof updateFilmStatus> |
   ReturnType<typeof redirectToRoute> |
   ReturnType<typeof requireAuthorization> |
   ReturnType<typeof requireLogout> |

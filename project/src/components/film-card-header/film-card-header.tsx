@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Film } from '../../types/film';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import FilmCardPoster from '../film-card-poster/film-card-poster';
@@ -22,4 +23,4 @@ function FilmCardHeader({ film }: FilmCardHeaderProps): JSX.Element {
   );
 }
 
-export default FilmCardHeader;
+export default memo(FilmCardHeader);

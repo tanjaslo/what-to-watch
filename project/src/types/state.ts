@@ -6,9 +6,10 @@ import { AuthorizationStatus } from '../const';
 export type State = {
   activeGenre: string,
   films: Film[],
-  promoFilm: Film | null,
+  myListFilms: Film[],
+  promoFilm: Film,
+  currentFilm: Film,
   reviews: Review[],
-  currentFilm: Film | null,
   stepCount: number,
   authStatus: AuthorizationStatus,
   user: User | null,

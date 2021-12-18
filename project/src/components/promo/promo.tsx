@@ -3,10 +3,10 @@ import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 
 type PromoProps = {
   promoFilm: Film;
-}
+};
 
-function Promo({promoFilm}: PromoProps): JSX.Element {
-  const {name, posterImage, genre, released} = promoFilm;
+function Promo({ promoFilm }: PromoProps): JSX.Element {
+  const { name, posterImage, genre, released } = promoFilm;
 
   return (
     <div className="film-card__wrap">

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Logo from '../logo/logo';
 
 function PageFooter(): JSX.Element {
@@ -12,4 +13,4 @@ function PageFooter(): JSX.Element {
   );
 }
 
-export default PageFooter;
+export default memo(PageFooter);

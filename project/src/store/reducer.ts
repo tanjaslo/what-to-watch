@@ -1,4 +1,5 @@
 import { Actions, ActionType } from '../types/action';
+import { Film } from '../types/film';
 import { State } from '../types/state';
 import { AuthorizationStatus, DEFAULT_GENRE, INITIAL_FILMS_COUNT, STEP_COUNT } from '../const';
 
@@ -6,8 +7,9 @@ const initialState = {
   activeGenre: DEFAULT_GENRE,
   stepCount: INITIAL_FILMS_COUNT,
   films: [],
-  promoFilm: null,
-  currentFilm: null,
+  myListFilms: [],
+  promoFilm: {} as Film,
+  currentFilm: {} as Film,
   reviews: [],
   authStatus: AuthorizationStatus.Unknown,
   user: null,
@@ -48,6 +50,11 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return {
         ...state,
         currentFilm: action.payload,
+      };
+    case ActionType.LoadMyList:
+      return {
+        ...state,
+        myListFilms: action.payload,
       };
     case ActionType.LoadReviews:
       return {

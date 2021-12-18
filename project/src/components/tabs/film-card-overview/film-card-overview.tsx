@@ -3,12 +3,12 @@ import FilmRating from '../../rating/rating';
 
 type FilmCardOverviewProps = {
   film: Film;
-}
+};
 
-function FilmCardOverview({film}: FilmCardOverviewProps): JSX.Element {
-  const {description, director, starring} = film;
+function FilmCardOverview({ film }: FilmCardOverviewProps): JSX.Element {
+  const { description, director, starring } = film;
 
-  const actors = starring.join(', ');
+  const actors = starring?.join(', ');
 
   return (
     <>
@@ -22,7 +22,8 @@ function FilmCardOverview({film}: FilmCardOverviewProps): JSX.Element {
           <strong>Starring: {actors} and other</strong>
         </p>
       </div>
-    </>);
+    </>
+  );
 }
 
 export default FilmCardOverview;
