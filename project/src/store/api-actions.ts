@@ -1,4 +1,5 @@
 import camelcaseKeys from 'camelcase-keys';
+import { toast } from 'react-toastify';
 import {
   loadFilms,
   loadFilm,
@@ -18,7 +19,7 @@ import { Film, FilmId } from '../types/film';
 import { Review } from '../types/review';
 import { User } from '../types/user';
 import { saveToken, dropToken } from '../services/token';
-import { APIRoute, AppRoute, AuthorizationStatus, FavoriteStatus } from '../const';
+import { APIRoute, AppRoute, AuthorizationStatus, FavoriteStatus, AUTH_FAIL_MESSAGE } from '../const';
 
 export const fetchFilms = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
@@ -58,8 +59,12 @@ export const fetchMyList = (): ThunkActionResult =>
 
 export const setFilmStatus = (id: FilmId, status: FavoriteStatus): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.post<Film>(`${APIRoute.MyList}/${id}/${status}`);
-    dispatch(updateFilmStatus(camelcaseKeys(data)));
+    try {
+      const { data } = await api.post<Film>(`${APIRoute.MyList}/${id}/${status}`);
+      dispatch(updateFilmStatus(camelcaseKeys(data)));
+    } catch (error) {
+      toast.info(AUTH_FAIL_MESSAGE);
+    }
   };
 
 export const checkAuth = (): ThunkActionResult =>

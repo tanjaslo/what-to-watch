@@ -24,12 +24,6 @@ function MyListBtn({
   isFavorite,
   toggleMyListBtn,
 }: ConnectedComponentProps): JSX.Element {
-  //const { use } = MyListButtonType[isFavorite ? 'IN_LIST' : 'ADD']
-  console.log(id);
-  console.log(isFavorite);
-
-  // const dispatch = useDispatch();
-
   const onBtnClickHandler = () => {
     toggleMyListBtn(
       id,
