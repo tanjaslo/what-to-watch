@@ -11,6 +11,7 @@ const initialState = {
   promoFilm: {} as Film,
   currentFilm: {} as Film,
   reviews: [],
+  similarFilms: [],
   authStatus: AuthorizationStatus.Unknown,
   user: null,
   isDataLoaded: false,
@@ -60,6 +61,11 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return {
         ...state,
         reviews: action.payload,
+      };
+    case ActionType.LoadSimilarFilms:
+      return {
+        ...state,
+        similarFilms: action.payload,
       };
     case ActionType.RequireAuthorization:
       return {

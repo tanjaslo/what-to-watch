@@ -6,6 +6,7 @@ import PageHeader from '../../components/containers/page-header/page-header';
 import PageFooter from '../../components/page-footer/page-footer';
 import CatalogSection from '../../components/containers/catalog-section/catalog-section';
 import FilmsList from '../../components/films-list/films-list';
+import { useEffect } from 'react';
 
 const mapStateToProps = ({ myListFilms }: State) => ({
   myListFilms,
@@ -25,6 +26,10 @@ function MyListPage({
   myListFilms,
   loadMyListFilms,
 }: PropsFromRedux): JSX.Element {
+  useEffect(() => {
+    loadMyListFilms();
+  }, [loadMyListFilms]);
+
   return (
     <div className="user-page">
       <PageHeader title={'MyList'} userPageHead />

@@ -10,6 +10,7 @@ export type State = {
   promoFilm: Film,
   currentFilm: Film,
   reviews: Review[],
+  similarFilms: Film[],
   stepCount: number,
   authStatus: AuthorizationStatus,
   user: User | null,

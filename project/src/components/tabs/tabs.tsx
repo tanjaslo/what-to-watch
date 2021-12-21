@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { SyntheticEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Film } from '../../types/film';
-import { Review } from '../../types/review';
 import { TabItem } from '../../const';
 import FilmCardOverview from './film-card-overview/film-card-overview';
 import FilmCardReviews from './film-card-reviews/film-card-reviews';
@@ -10,16 +9,15 @@ import FilmCardDetails from './film-card-details/film-card-details';
 
 type TabListProps = {
   film: Film;
-  reviews: Review[];
 };
 
-const renderTabContent = (tabItem: string, film: Film, reviews: Review[]) => {
+const renderTabContent = (tabItem: string, film: Film) => {
   switch (tabItem) {
     case TabItem.OVERVIEW: {
       return <FilmCardOverview film={film} />;
     }
     case TabItem.REVIEWS: {
-      return <FilmCardReviews reviews={reviews} />;
+      return <FilmCardReviews />;
     }
     case TabItem.DETAILS: {
       return <FilmCardDetails film={film} />;
@@ -27,7 +25,7 @@ const renderTabContent = (tabItem: string, film: Film, reviews: Review[]) => {
   }
 };
 
-function Tabs({ film, reviews }: TabListProps): JSX.Element {
+function Tabs({ film }: TabListProps): JSX.Element {
   const [activeTab, setActiveTab] = useState<string>(TabItem.OVERVIEW);
 
   const INITIAL_CLASSNAME = 'film-nav__item';
@@ -71,7 +69,7 @@ function Tabs({ film, reviews }: TabListProps): JSX.Element {
           })}
         </ul>
       </nav>
-      {renderTabContent(activeTab, film, reviews)}
+      {renderTabContent(activeTab, film)}
     </>
   );
 }

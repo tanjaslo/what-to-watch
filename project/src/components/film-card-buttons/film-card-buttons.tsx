@@ -1,47 +1,18 @@
-import { connect, ConnectedProps, useDispatch } from 'react-redux';
-import { useParams } from 'react-router';
-import { FavoriteStatus } from '../../const';
-import { setMyList } from '../../store/api-actions';
-import { State } from '../../types/state';
+import { FilmId } from '../../types/film';
 import AddReviewLink from '../add-review-link/add-review-link';
+import MyListBtn from './my-list-btn/my-list-btn';
 
 type FilmCardButtonsProps = {
-  isPromo?: boolean;
+  hasAddReviewLink?: boolean;
+  id: FilmId;
+  isFavorite: boolean;
 };
 
-const mapStateToProps = ({ currentFilm, promoFilm }: State) => ({
-  currentFilm,
-  promoFilm,
-});
-
-const connector = connect(mapStateToProps);
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & FilmCardButtonsProps;
-
 function FilmCardButtons({
-  isPromo,
-  currentFilm,
-  promoFilm,
-}: ConnectedComponentProps): JSX.Element {
-  const { id }: { id: string } = useParams();
-  const dispatch = useDispatch();
-
-  const currentId = id || promoFilm.id?.toString();
-
-  const currentFavoriteStatus = currentId
-    ? currentFilm.isFavorite
-    : promoFilm.isFavorite;
-
-  const onBtnClickHandler = (evt: React.MouseEvent<HTMLButtonElement>) => {
-    evt.preventDefault();
-    dispatch(
-      setMyList(
-        currentId,
-        currentFavoriteStatus ? FavoriteStatus.False : FavoriteStatus.True,
-      ),
-    );
-  };
-
+  hasAddReviewLink,
+  id,
+  isFavorite,
+}: FilmCardButtonsProps): JSX.Element {
   return (
     <div className="film-card__buttons">
       <button className="btn btn--play film-card__button" type="button">
@@ -50,20 +21,10 @@ function FilmCardButtons({
         </svg>
         <span>Play</span>
       </button>
-      <button
-        className="btn btn--list film-card__button"
-        type="button"
-        onClick={onBtnClickHandler}
-      >
-        <svg viewBox="0 0 19 20" width="19" height="20">
-          <use xlinkHref="#add"></use>
-        </svg>
-        <span>My list</span>
-      </button>
-      {!isPromo && <AddReviewLink id={+id} />}
+      <MyListBtn id={id} isFavorite={isFavorite} />
+      {hasAddReviewLink && <AddReviewLink id={id} />}
     </div>
   );
 }
 
-export { FilmCardButtons };
-export default connector(FilmCardButtons);
+export default FilmCardButtons;

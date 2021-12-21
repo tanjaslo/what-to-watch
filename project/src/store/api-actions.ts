@@ -5,6 +5,7 @@ import {
   loadPromoFilm,
   loadMyList,
   loadReviews,
+  loadSimilarFilms,
   redirectToRoute,
   requireAuthorization,
   setUserData,
@@ -13,7 +14,7 @@ import {
 } from './action';
 import { ThunkActionResult } from '../types/action';
 import { AuthData } from '../types/auth-data';
-import { Film } from '../types/film';
+import { Film, FilmId } from '../types/film';
 import { Review } from '../types/review';
 import { User } from '../types/user';
 import { saveToken, dropToken } from '../services/token';
@@ -31,16 +32,22 @@ export const fetchPromoFilm = (): ThunkActionResult =>
     dispatch(loadPromoFilm(camelcaseKeys(data)));
   };
 
-export const fetchFilm = (id: string): ThunkActionResult =>
+export const fetchFilm = (id: FilmId): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const { data } = await api.get<Film>(`${APIRoute.Films}/${id}`);
     dispatch(loadFilm(camelcaseKeys(data)));
   };
 
-export const fetchReviews = (id: string): ThunkActionResult =>
+export const fetchReviews = (id: FilmId): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const { data } = await api.get<Review[]>(`${APIRoute.Reviews}/${id}`);
     dispatch(loadReviews(data));
+  };
+
+export const fetchSimilarFilms = (id: FilmId): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const { data } = await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`);
+    dispatch(loadSimilarFilms(data.map((film) => camelcaseKeys(film))));
   };
 
 export const fetchMyList = (): ThunkActionResult =>
@@ -49,7 +56,7 @@ export const fetchMyList = (): ThunkActionResult =>
     dispatch(loadMyList(data.map((film) => camelcaseKeys(film))));
   };
 
-export const setMyList = (id: string, status: FavoriteStatus): ThunkActionResult =>
+export const setFilmStatus = (id: FilmId, status: FavoriteStatus): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const { data } = await api.post<Film>(`${APIRoute.MyList}/${id}/${status}`);
     dispatch(updateFilmStatus(camelcaseKeys(data)));

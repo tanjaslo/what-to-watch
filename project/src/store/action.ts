@@ -38,14 +38,19 @@ export const loadReviews = (reviews: Review[]) => ({
   payload: reviews,
 } as const);
 
+export const loadSimilarFilms = (similarFilms: Film[]) => ({
+  type: ActionType.LoadSimilarFilms,
+  payload: similarFilms,
+} as const);
+
 export const loadMyList = (myList: Film[]) => ({
   type: ActionType.LoadMyList,
   payload: myList,
 } as const);
 
-export const updateFilmStatus = (film: Film) => ({
+export const updateFilmStatus = (currentFilm: Film) => ({
   type: ActionType.UpdateFilmStatus,
-  payload: film,
+  payload: currentFilm,
 } as const);
 
 export const redirectToRoute = (url: AppRoute) => ({

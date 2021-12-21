@@ -25,6 +25,21 @@ export const TabItem = {
   REVIEWS: 'reviews',
 };
 
+export const MyListButtonType = {
+  ADD: {
+    imgWidth: '19',
+    imgHeight: '20',
+    use: '#add',
+    viewBox: '0 0 19 20',
+  },
+  IN_LIST: {
+    imgWidth: '18',
+    imgHeight: '14',
+    use: '#in-list',
+    viewBox: '0 0 18 14',
+  },
+};
+
 export enum AppRoute {
   AddReview = '/films/:id/review',
   Login = '/login',

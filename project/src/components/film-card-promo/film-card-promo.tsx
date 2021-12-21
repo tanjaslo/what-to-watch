@@ -1,12 +1,11 @@
-import { useEffect } from 'react';
-import { ThunkAppDispatch } from '../../types/action';
+import { connect, ConnectedProps } from 'react-redux';
 import { State } from '../../types/state';
-import { ConnectedProps } from 'react-redux';
-import { connect } from 'react-redux';
-import { fetchPromoFilm } from '../../store/api-actions';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import PageHeader from '../containers/page-header/page-header';
-import Promo from '../promo/promo';
+import FilmCardButtons from '../film-card-buttons/film-card-buttons';
+import { ThunkAppDispatch } from '../../types/action';
+import { fetchPromoFilm } from '../../store/api-actions';
+import { useEffect } from 'react';
 
 const mapStateToProps = ({ promoFilm }: State) => ({
   promoFilm,
@@ -30,6 +29,8 @@ function FilmCardPromo({
     loadPromoFilm();
   }, [loadPromoFilm]);
 
+  const { id, name, posterImage, genre, released, isFavorite } = promoFilm;
+
   if (!promoFilm) {
     return <PageHeader />;
   }
@@ -42,7 +43,22 @@ function FilmCardPromo({
 
       <PageHeader filmCardHead />
 
-      <Promo promoFilm={promoFilm} />
+      <div className="film-card__wrap">
+        <div className="film-card__info">
+          <div className="film-card__poster">
+            <img src={posterImage} alt={name} width="218" height="327" />
+          </div>
+
+          <div className="film-card__desc">
+            <h2 className="film-card__title">{name}</h2>
+            <p className="film-card__meta">
+              <span className="film-card__genre">{genre}</span>
+              <span className="film-card__year">{released}</span>
+            </p>
+            <FilmCardButtons id={id} isFavorite={isFavorite} />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

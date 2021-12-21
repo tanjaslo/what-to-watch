@@ -1,24 +1,42 @@
-import { Film } from '../../types/film';
-import { Review } from '../../types/review';
+import { useParams } from 'react-router-dom';
+import { connect, ConnectedProps } from 'react-redux';
+import { State } from '../../types/state';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 import FilmCardFullSection from '../containers/film-card-full-section/film-card-full-section';
 import FilmCardPoster from '../film-card-poster/film-card-poster';
 import PageHeader from '../containers/page-header/page-header';
 import Tabs from '../tabs/tabs';
+import { fetchFilm } from '../../store/api-actions';
+import { ThunkAppDispatch } from '../../types/action';
+import { useEffect } from 'react';
 
-type FilmCardFullProps = {
-  film: Film;
-  reviews: Review[];
-};
+const mapStateToProps = ({ currentFilm }: State) => ({
+  currentFilm,
+});
 
-function FilmCardFull({ film, reviews }: FilmCardFullProps): JSX.Element {
-  const { name, genre, released } = film;
+const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
+  loadFilm: (id: string) => {
+    dispatch(fetchFilm(id));
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function FilmCardFull({ currentFilm, loadFilm }: PropsFromRedux): JSX.Element {
+  const { id }: { id: string } = useParams();
+  const { name, genre, released, isFavorite } = currentFilm;
+
+  useEffect(() => {
+    loadFilm(id);
+  }, [loadFilm, id]);
 
   return (
     <FilmCardFullSection>
       <div className="film-card__hero">
-        <FilmCardBg film={film} />
+        <FilmCardBg film={currentFilm} />
 
         <h1 className="visually-hidden">WTW</h1>
         <PageHeader filmCardHead />
@@ -30,16 +48,16 @@ function FilmCardFull({ film, reviews }: FilmCardFullProps): JSX.Element {
               <span className="film-card__genre">{genre}</span>
               <span className="film-card__year">{released}</span>
             </p>
-            <FilmCardButtons />
+            <FilmCardButtons id={id} isFavorite={isFavorite} hasAddReviewLink />
           </div>
         </div>
       </div>
 
       <div className="film-card__wrap film-card__translate-top">
         <div className="film-card__info">
-          <FilmCardPoster film={film} big />
+          <FilmCardPoster film={currentFilm} big />
           <div className="film-card__desc">
-            <Tabs film={film} reviews={reviews} />
+            <Tabs film={currentFilm} />
           </div>
         </div>
       </div>
@@ -47,4 +65,5 @@ function FilmCardFull({ film, reviews }: FilmCardFullProps): JSX.Element {
   );
 }
 
-export default FilmCardFull;
+export { FilmCardFull };
+export default connector(FilmCardFull);

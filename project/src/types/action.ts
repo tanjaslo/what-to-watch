@@ -11,6 +11,7 @@ import {
   loadFilm,
   loadMyList,
   loadReviews,
+  loadSimilarFilms,
   updateFilmStatus,
   resetStepCount,
   redirectToRoute,
@@ -26,6 +27,7 @@ export enum ActionType {
   LoadFilms = 'data/loadFilms',
   LoadPromoFilm = 'data/loadPromoFilm',
   LoadFilm = 'data/loadFilm',
+  LoadSimilarFilms = 'data/loadSimilarFilms',
   LoadMyList = 'data/loadMyList',
   LoadReviews = 'data/loadReviews',
   UpdateFilmStatus = 'data/updateFilmStatus',
@@ -43,6 +45,7 @@ export type Actions =
   ReturnType<typeof loadPromoFilm> |
   ReturnType<typeof loadFilm> |
   ReturnType<typeof loadReviews> |
+  ReturnType<typeof loadSimilarFilms> |
   ReturnType<typeof loadMyList> |
   ReturnType<typeof updateFilmStatus> |
   ReturnType<typeof redirectToRoute> |

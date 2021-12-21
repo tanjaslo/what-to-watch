@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
+import { FilmId } from '../../types/film';
 
 type AddReviewLinkProps = {
-  id: number;
-}
+  id: FilmId;
+};
 
-function AddReviewLink({id}: AddReviewLinkProps): JSX.Element {
+function AddReviewLink({ id }: AddReviewLinkProps): JSX.Element {
   return (
-    <Link
-      className="btn film-card__button"
-      to={`/films/${id}/review`}
-    >Add review
+    <Link className="btn film-card__button" to={`/films/${id}/review`}>
+      Add review
     </Link>
   );
 }

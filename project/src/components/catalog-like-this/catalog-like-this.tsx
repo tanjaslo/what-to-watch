@@ -1,18 +1,37 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Film } from '../../types/film';
+import { connect, ConnectedProps } from 'react-redux';
+import { ThunkAppDispatch } from '../../types/action';
+import { State } from '../../types/state';
+import { fetchSimilarFilms } from '../../store/api-actions';
 import FilmsList from '../films-list/films-list';
 
-type CatalogLikeThisProps = {
-  films: Film[];
-};
+const mapStateToProps = ({ similarFilms }: State) => ({
+  similarFilms,
+});
 
-function CatalogLikeThis({ films }: CatalogLikeThisProps): JSX.Element {
+const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
+  loadSimilarFilms: (id: string) => {
+    dispatch(fetchSimilarFilms(id));
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function CatalogLikeThis({
+  similarFilms,
+  loadSimilarFilms,
+}: PropsFromRedux): JSX.Element {
   const { id }: { id: string } = useParams();
 
-  const currentFilm = films.find((film) => film.id === +id);
-  const similarGenreFilms = films.filter(
-    (film) => film !== currentFilm && film.genre === currentFilm?.genre,
-  );
+  useEffect(() => {
+    loadSimilarFilms(id);
+  }, [loadSimilarFilms, id]);
+
+  // const currentFilm = films.find((film) => film.id === id);
+  const similarGenreFilms = similarFilms.filter((film) => film.id !== +id);
 
   return (
     <section className="catalog catalog--like-this">
@@ -22,4 +41,5 @@ function CatalogLikeThis({ films }: CatalogLikeThisProps): JSX.Element {
   );
 }
 
-export default CatalogLikeThis;
+export { CatalogLikeThis };
+export default connector(CatalogLikeThis);
