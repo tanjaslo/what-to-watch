@@ -57,6 +57,12 @@ const reducer = (state: State = initialState, action: Actions): State => {
         ...state,
         myListFilms: action.payload,
       };
+    case ActionType.UpdateFilmStatus:
+      return {
+        ...state,
+        currentFilm: action.payload,
+        promoFilm: action.payload,
+      };
     case ActionType.LoadReviews:
       return {
         ...state,
