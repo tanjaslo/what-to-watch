@@ -67,6 +67,10 @@ export const requireLogout = () => ({
   type: ActionType.RequireLogout,
 } as const);
 
+export const setIsDataLoaded = () => ({
+  type: ActionType.SetIsDataLoaded,
+});
+
 export const setUserData = (userData: User | null) => ({
   type: ActionType.SetUserData,
   payload: userData,

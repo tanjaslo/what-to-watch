@@ -17,21 +17,23 @@ import {
   redirectToRoute,
   requireAuthorization,
   requireLogout,
+  setIsDataLoaded,
   setUserData,
 } from '../store/action';
 
 export enum ActionType {
-  ChangeGenre = 'genre/changeGenre',
-  IncrementStep = 'films/incrementStep',
-  ResetStepCount = 'films/resetStepCount',
-  LoadFilms = 'data/loadFilms',
-  LoadPromoFilm = 'data/loadPromoFilm',
-  LoadFilm = 'data/loadFilm',
-  LoadSimilarFilms = 'data/loadSimilarFilms',
-  LoadMyList = 'data/loadMyList',
-  LoadReviews = 'data/loadReviews',
-  UpdateFilmStatus = 'data/updateFilmStatus',
-  Redirect = 'route/redirect',
+  Redirect = 'app-data/redirect',
+  ChangeGenre = 'app-data/changeGenre',
+  IncrementStep = 'app-data/incrementStep',
+  ResetStepCount = 'app-data/resetStepCount',
+  SetIsDataLoaded = 'app-data/setIsDataLoaded',
+  LoadFilms = 'films/loadFilms',
+  LoadPromoFilm = 'films/loadPromoFilm',
+  LoadFilm = 'films/loadFilm',
+  LoadSimilarFilms = 'films/loadSimilarFilms',
+  LoadMyList = 'films/loadMyList',
+  LoadReviews = 'films/loadReviews',
+  UpdateFilmStatus = 'films/updateFilmStatus',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
   SetUserData = 'user/setUserData',
@@ -41,6 +43,7 @@ export type Actions =
   ReturnType<typeof changeGenre> |
   ReturnType<typeof incrementStep> |
   ReturnType<typeof resetStepCount> |
+  ReturnType<typeof setIsDataLoaded> |
   ReturnType<typeof loadFilms> |
   ReturnType<typeof loadPromoFilm> |
   ReturnType<typeof loadFilm> |

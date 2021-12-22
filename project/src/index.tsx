@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
-import { reducer } from './store/reducer';
+import { rootReducer } from './store/reducers/root-reducer';
 import { requireAuthorization } from './store/action';
 import { checkAuth, fetchFilms } from './store/api-actions';
 import { redirect } from './store/middlewares/redirect';
@@ -20,7 +20,7 @@ const api = createAPI(() =>
 );
 
 const store = createStore(
-  reducer,
+  rootReducer,
   composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument(api)),
     applyMiddleware(redirect),

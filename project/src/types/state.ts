@@ -1,18 +1,30 @@
 import { Film } from './film';
 import { Review } from './review';
 import { User } from './user';
+import { RootState } from '../store/reducers/root-reducer';
 import { AuthorizationStatus } from '../const';
 
-export type State = {
+export type AppDataReducer = {
   activeGenre: string,
-  films: Film[],
-  myListFilms: Film[],
-  promoFilm: Film,
-  currentFilm: Film,
-  reviews: Review[],
-  similarFilms: Film[],
   stepCount: number,
-  authStatus: AuthorizationStatus,
-  user: User | null,
   isDataLoaded: boolean,
 };
+
+export type FilmsReducer = {
+  films: Film[],
+  currentFilm: Film,
+  promoFilm: Film,
+  myListFilms: Film[],
+  similarFilms: Film[],
+};
+
+export type ReviewsReducer = {
+  reviews: Review[],
+};
+
+export type UserReducer = {
+  authStatus: AuthorizationStatus,
+  user: User | null,
+};
+
+export type State = RootState;
