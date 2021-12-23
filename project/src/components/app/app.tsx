@@ -14,8 +14,8 @@ import UserPage from '../../pages/user-page/user-page';
 import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../loading-screen/loading-screen';
 
-const mapStateToProps = ({ isDataLoaded }: State) => ({
-  isDataLoaded,
+const mapStateToProps = ({ FILMS }: State) => ({
+  isDataLoaded: FILMS.isDataLoaded,
 });
 
 const connector = connect(mapStateToProps);

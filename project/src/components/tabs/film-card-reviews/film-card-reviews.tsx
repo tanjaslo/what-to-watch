@@ -6,8 +6,8 @@ import { ThunkAppDispatch } from '../../../types/action';
 import { State } from '../../../types/state';
 import ReviewsList from '../../reviews-list/reviews-list';
 
-const mapStateToProps = ({ reviews }: State) => ({
-  reviews,
+const mapStateToProps = ({ REVIEWS }: State) => ({
+  reviews: REVIEWS.reviews,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

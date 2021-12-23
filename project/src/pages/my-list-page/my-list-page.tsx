@@ -8,8 +8,8 @@ import CatalogSection from '../../components/containers/catalog-section/catalog-
 import FilmsList from '../../components/films-list/films-list';
 import { useEffect } from 'react';
 
-const mapStateToProps = ({ myListFilms }: State) => ({
-  myListFilms,
+const mapStateToProps = ({ FILMS }: State) => ({
+  myListFilms: FILMS.myListFilms,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

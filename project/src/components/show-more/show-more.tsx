@@ -7,9 +7,9 @@ import { STEP_COUNT } from '../../const';
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const mapStateToProps = ({ activeGenre, stepCount }: State) => ({
-  activeGenre,
-  stepCount,
+const mapStateToProps = ({ APP }: State) => ({
+  activeGenre: APP.activeGenre,
+  stepCount: APP.stepCount,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({

@@ -2,12 +2,13 @@ import { Actions, ActionType } from '../../types/action';
 import { Film } from '../../types/film';
 import { FilmsReducer } from '../../types/state';
 
-const initialState = {
+const initialState: FilmsReducer = {
   films: [],
   promoFilm: {} as Film,
   currentFilm: {} as Film,
   myListFilms: [],
   similarFilms: [],
+  isDataLoaded: false,
 };
 
 const filmsReducer = (state = initialState, action: Actions): FilmsReducer => {
@@ -23,6 +24,7 @@ const filmsReducer = (state = initialState, action: Actions): FilmsReducer => {
       return {
         ...state,
         films: action.payload,
+        isDataLoaded: true,
       };
     case ActionType.LoadPromoFilm:
       return {

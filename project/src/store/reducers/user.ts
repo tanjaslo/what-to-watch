@@ -2,7 +2,7 @@ import { Actions, ActionType } from '../../types/action';
 import { AuthorizationStatus } from '../../const';
 import { UserReducer } from '../../types/state';
 
-const initialState = {
+const initialState: UserReducer = {
   authStatus: AuthorizationStatus.Unknown,
   user: null,
 };

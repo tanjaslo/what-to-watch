@@ -1,21 +1,21 @@
 import { combineReducers } from 'redux';
-import { appDataReducer } from './app-data';
+import { appReducer } from './app';
 import { filmsReducer } from './films';
 import { reviewsReducer } from './reviews';
 import { userReducer } from './user';
 
 export enum NameSpace {
-  APP_DATA = 'APP-DATA',
-  FILMS = 'FILMS',
-  REVIEWS = 'REVIEWS',
-  USER = 'USER',
+  app = 'APP',
+  films = 'FILMS',
+  reviews = 'REVIEWS',
+  user = 'USER',
 }
 
 export const rootReducer = combineReducers({
-  [NameSpace.APP_DATA]: appDataReducer,
-  [NameSpace.FILMS]: filmsReducer,
-  [NameSpace.REVIEWS]: reviewsReducer,
-  [NameSpace.USER]: userReducer,
+  [NameSpace.app]: appReducer,
+  [NameSpace.films]: filmsReducer,
+  [NameSpace.reviews]: reviewsReducer,
+  [NameSpace.user]: userReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

@@ -23,6 +23,8 @@ export const loadFilms = (films: Film[]) => ({
   payload: films,
 } as const);
 
+// export const loadFilms = createAction(ActionType.LoadFilms);
+
 export const loadFilm = (currentFilm: Film) => ({
   type: ActionType.LoadFilm,
   payload: currentFilm,
@@ -54,7 +56,7 @@ export const updateFilmStatus = (currentFilm: Film) => ({
 } as const);
 
 export const redirectToRoute = (url: AppRoute) => ({
-  type: ActionType.Redirect,
+  type: ActionType.RedirectToRoute,
   payload: url,
 } as const);
 
@@ -66,10 +68,6 @@ export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
 export const requireLogout = () => ({
   type: ActionType.RequireLogout,
 } as const);
-
-export const setIsDataLoaded = () => ({
-  type: ActionType.SetIsDataLoaded,
-});
 
 export const setUserData = (userData: User | null) => ({
   type: ActionType.SetUserData,

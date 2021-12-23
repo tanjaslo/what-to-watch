@@ -11,8 +11,8 @@ import { fetchFilm } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/action';
 import { useEffect } from 'react';
 
-const mapStateToProps = ({ currentFilm }: State) => ({
-  currentFilm,
+const mapStateToProps = ({ FILMS }: State) => ({
+  currentFilm: FILMS.currentFilm,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

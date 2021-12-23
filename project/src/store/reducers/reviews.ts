@@ -1,7 +1,7 @@
 import { Actions, ActionType } from '../../types/action';
 import { ReviewsReducer } from '../../types/state';
 
-const initialState = {
+const initialState: ReviewsReducer = {
   reviews: [],
 };
 

@@ -6,8 +6,8 @@ import { State } from '../../types/state';
 import { fetchSimilarFilms } from '../../store/api-actions';
 import FilmsList from '../films-list/films-list';
 
-const mapStateToProps = ({ similarFilms }: State) => ({
-  similarFilms,
+const mapStateToProps = ({ FILMS }: State) => ({
+  similarFilms: FILMS.similarFilms,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

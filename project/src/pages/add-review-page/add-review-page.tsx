@@ -6,8 +6,8 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import FilmCardFullSection from '../../components/containers/film-card-full-section/film-card-full-section';
 import FilmCardHeader from '../../components/film-card-header/film-card-header';
 
-const mapStateToProps = ({ films }: State) => ({
-  films,
+const mapStateToProps = ({ FILMS }: State) => ({
+  films: FILMS.films,
 });
 
 const connector = connect(mapStateToProps);

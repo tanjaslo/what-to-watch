@@ -7,8 +7,8 @@ import { ThunkAppDispatch } from '../../types/action';
 import { fetchPromoFilm } from '../../store/api-actions';
 import { useEffect } from 'react';
 
-const mapStateToProps = ({ promoFilm }: State) => ({
-  promoFilm,
+const mapStateToProps = ({ FILMS }: State) => ({
+  promoFilm: FILMS.promoFilm,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

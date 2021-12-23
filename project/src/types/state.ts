@@ -4,10 +4,9 @@ import { User } from './user';
 import { RootState } from '../store/reducers/root-reducer';
 import { AuthorizationStatus } from '../const';
 
-export type AppDataReducer = {
+export type AppReducer = {
   activeGenre: string,
   stepCount: number,
-  isDataLoaded: boolean,
 };
 
 export type FilmsReducer = {
@@ -16,6 +15,7 @@ export type FilmsReducer = {
   promoFilm: Film,
   myListFilms: Film[],
   similarFilms: Film[],
+  isDataLoaded: boolean,
 };
 
 export type ReviewsReducer = {

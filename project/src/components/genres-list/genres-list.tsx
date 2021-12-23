@@ -5,9 +5,9 @@ import { DEFAULT_GENRE } from '../../const';
 import { State } from '../../types/state';
 import { getGenresList, getUniqueGenres } from '../../utils';
 
-const mapStateToProps = ({ films, activeGenre }: State) => ({
-  films,
-  activeGenre,
+const mapStateToProps = ({ FILMS, APP }: State) => ({
+  films: FILMS.films,
+  activeGenre: APP.activeGenre,
 });
 
 type GenresListProps = {

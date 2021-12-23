@@ -5,8 +5,8 @@ import { ThunkAppDispatch } from '../../types/action';
 import { fetchMyList, logout } from '../../store/api-actions';
 import { AppRoute } from '../../const';
 
-const mapStateToProps = ({ user }: State) => ({
-  user,
+const mapStateToProps = ({ USER }: State) => ({
+  user: USER.user,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

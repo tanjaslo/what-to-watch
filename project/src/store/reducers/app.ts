@@ -1,14 +1,13 @@
 import { Actions, ActionType } from '../../types/action';
-import { AppDataReducer } from '../../types/state';
+import { AppReducer } from '../../types/state';
 import { DEFAULT_GENRE, INITIAL_FILMS_COUNT, STEP_COUNT } from '../../const';
 
-const initialState = {
+const initialState: AppReducer = {
   activeGenre: DEFAULT_GENRE,
   stepCount: INITIAL_FILMS_COUNT,
-  isDataLoaded: false,
 };
 
-const appDataReducer = (state: AppDataReducer = initialState, action: Actions): AppDataReducer => {
+const appReducer = (state = initialState, action: Actions): AppReducer => {
   const type = action.type;
 
   switch (type) {
@@ -27,15 +26,10 @@ const appDataReducer = (state: AppDataReducer = initialState, action: Actions): 
         ...state,
         stepCount: initialState.stepCount,
       };
-    case ActionType.SetIsDataLoaded:
-      return {
-        ...state,
-        isDataLoaded: true,
-      };
     default:
       return state;
   }
 };
 
-export { appDataReducer };
+export { appReducer };
 

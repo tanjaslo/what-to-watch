@@ -6,11 +6,11 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 
 type PrivateRouteProps = RouteProps & {
   render: () => JSX.Element;
-  authStatus: AuthorizationStatus;
+  //authStatus: AuthorizationStatus;
 };
 
-const mapStateToProps = ({ authStatus }: State) => ({
-  authStatus,
+const mapStateToProps = ({ USER }: State) => ({
+  authStatus: USER.authStatus,
 });
 
 const connector = connect(mapStateToProps);

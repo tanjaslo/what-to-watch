@@ -9,10 +9,10 @@ import CatalogSection from '../containers/catalog-section/catalog-section';
 import ShowMore from '../show-more/show-more';
 import { getFilteredFilms } from '../../utils';
 
-const mapStateToProps = ({ films, activeGenre, stepCount }: State) => ({
-  films,
-  activeGenre,
-  stepCount,
+const mapStateToProps = ({ FILMS, APP }: State) => ({
+  films: FILMS.films,
+  activeGenre: APP.activeGenre,
+  stepCount: APP.stepCount,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({

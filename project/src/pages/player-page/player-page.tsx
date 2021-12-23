@@ -3,8 +3,8 @@ import { connect, ConnectedProps } from 'react-redux';
 import { State } from '../../types/state';
 import { AppRoute } from '../../const';
 
-const mapStateToProps = ({ films }: State) => ({
-  films,
+const mapStateToProps = ({ FILMS }: State) => ({
+  films: FILMS.films,
 });
 
 const connector = connect(mapStateToProps);
