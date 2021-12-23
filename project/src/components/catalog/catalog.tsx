@@ -1,19 +1,14 @@
-import { State } from '../../types/state';
 import { Actions } from '../../types/action';
 import { Dispatch } from 'redux';
-import { connect, ConnectedProps } from 'react-redux';
+import { connect, ConnectedProps, useSelector } from 'react-redux';
 import { changeGenre, resetStepCount } from '../../store/action';
+import { getActiveGenre, getStepCount } from '../../store/app/selectors';
+import { getFilms } from '../../store/films/selectors';
 import FilmsList from '../films-list/films-list';
 import GenresList from '../genres-list/genres-list';
 import CatalogSection from '../containers/catalog-section/catalog-section';
 import ShowMore from '../show-more/show-more';
 import { getFilteredFilms } from '../../utils';
-
-const mapStateToProps = ({ FILMS, APP }: State) => ({
-  films: FILMS.films,
-  activeGenre: APP.activeGenre,
-  stepCount: APP.stepCount,
-});
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   onGenresItemClick(activeGenre: string) {
@@ -22,16 +17,15 @@ const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   },
 });
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(null, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function Catalog({
-  films,
-  activeGenre,
-  stepCount,
-  onGenresItemClick,
-}: PropsFromRedux): JSX.Element {
+function Catalog({ onGenresItemClick }: PropsFromRedux): JSX.Element {
+  const activeGenre = useSelector(getActiveGenre);
+  const films = useSelector(getFilms);
+  const stepCount = useSelector(getStepCount);
+
   const filmsByGenre = getFilteredFilms(films, activeGenre);
   const filmsToRender = filmsByGenre.slice(0, stepCount);
   const isButtonVisible = filmsByGenre.length > filmsToRender.length;

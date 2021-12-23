@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { rootReducer } from './store/reducers/root-reducer';
+import { rootReducer } from './store/root-reducer';
 import { requireAuthorization } from './store/action';
 import { checkAuth, fetchFilms } from './store/api-actions';
 import { redirect } from './store/middlewares/redirect';

@@ -1,13 +1,9 @@
-import { connect, ConnectedProps } from 'react-redux';
+import { connect, ConnectedProps, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { State } from '../../types/state';
+import { getUser } from '../../store/user/selectors';
 import { ThunkAppDispatch } from '../../types/action';
 import { fetchMyList, logout } from '../../store/api-actions';
 import { AppRoute } from '../../const';
-
-const mapStateToProps = ({ USER }: State) => ({
-  user: USER.user,
-});
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onAvatarClick() {
@@ -18,15 +14,13 @@ const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   },
 });
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(null, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function UserBlock({
-  user,
-  onAvatarClick,
-  onLogOut,
-}: PropsFromRedux): JSX.Element {
+function UserBlock({ onAvatarClick, onLogOut }: PropsFromRedux): JSX.Element {
+  const user = useSelector(getUser);
+
   const handleLogout = () => {
     onLogOut();
   };

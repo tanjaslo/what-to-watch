@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { connect, ConnectedProps } from 'react-redux';
-import { State } from '../../types/state';
+import { connect, ConnectedProps, useSelector } from 'react-redux';
+import { getCurrentFilm } from '../../store/films/selectors';
+import { FilmId } from '../../types/film';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 import FilmCardFullSection from '../containers/film-card-full-section/film-card-full-section';
@@ -9,24 +11,20 @@ import PageHeader from '../containers/page-header/page-header';
 import Tabs from '../tabs/tabs';
 import { fetchFilm } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/action';
-import { useEffect } from 'react';
-
-const mapStateToProps = ({ FILMS }: State) => ({
-  currentFilm: FILMS.currentFilm,
-});
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  loadFilm: (id: string) => {
+  loadFilm: (id: FilmId) => {
     dispatch(fetchFilm(id));
   },
 });
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(null, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function FilmCardFull({ currentFilm, loadFilm }: PropsFromRedux): JSX.Element {
+function FilmCardFull({ loadFilm }: PropsFromRedux): JSX.Element {
   const { id }: { id: string } = useParams();
+  const currentFilm = useSelector(getCurrentFilm);
   const { name, genre, released, isFavorite } = currentFilm;
 
   useEffect(() => {

@@ -1,16 +1,12 @@
-import { connect, ConnectedProps } from 'react-redux';
+import { useEffect } from 'react';
+import { connect, ConnectedProps, useSelector } from 'react-redux';
+import { getMyFilms } from '../../store/films/selectors';
 import { ThunkAppDispatch } from '../../types/action';
-import { State } from '../../types/state';
 import { fetchMyList } from '../../store/api-actions';
 import PageHeader from '../../components/containers/page-header/page-header';
 import PageFooter from '../../components/page-footer/page-footer';
 import CatalogSection from '../../components/containers/catalog-section/catalog-section';
 import FilmsList from '../../components/films-list/films-list';
-import { useEffect } from 'react';
-
-const mapStateToProps = ({ FILMS }: State) => ({
-  myListFilms: FILMS.myListFilms,
-});
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   loadMyListFilms: () => {
@@ -18,14 +14,13 @@ const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   },
 });
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(null, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function MyListPage({
-  myListFilms,
-  loadMyListFilms,
-}: PropsFromRedux): JSX.Element {
+function MyListPage({ loadMyListFilms }: PropsFromRedux): JSX.Element {
+  const myListFilms = useSelector(getMyFilms);
+
   useEffect(() => {
     loadMyListFilms();
   }, [loadMyListFilms]);

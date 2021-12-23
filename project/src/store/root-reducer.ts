@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { appReducer } from './app';
-import { filmsReducer } from './films';
-import { reviewsReducer } from './reviews';
-import { userReducer } from './user';
+import { appReducer } from './app/app';
+import { filmsReducer } from './films/films';
+import { reviewsReducer } from './reviews/reviews';
+import { userReducer } from './user/user';
 
 export enum NameSpace {
   app = 'APP',

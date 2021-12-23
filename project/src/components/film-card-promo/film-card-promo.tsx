@@ -1,15 +1,11 @@
-import { connect, ConnectedProps } from 'react-redux';
-import { State } from '../../types/state';
+import { useEffect } from 'react';
+import { connect, ConnectedProps, useSelector } from 'react-redux';
+import { getpromoFilm } from '../../store/films/selectors';
+import { fetchPromoFilm } from '../../store/api-actions';
+import { ThunkAppDispatch } from '../../types/action';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import PageHeader from '../containers/page-header/page-header';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
-import { ThunkAppDispatch } from '../../types/action';
-import { fetchPromoFilm } from '../../store/api-actions';
-import { useEffect } from 'react';
-
-const mapStateToProps = ({ FILMS }: State) => ({
-  promoFilm: FILMS.promoFilm,
-});
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   loadPromoFilm: () => {
@@ -17,18 +13,16 @@ const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   },
 });
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(null, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function FilmCardPromo({
-  promoFilm,
-  loadPromoFilm,
-}: PropsFromRedux): JSX.Element {
+function FilmCardPromo({ loadPromoFilm }: PropsFromRedux): JSX.Element {
   useEffect(() => {
     loadPromoFilm();
   }, [loadPromoFilm]);
 
+  const promoFilm = useSelector(getpromoFilm);
   const { id, name, posterImage, genre, released, isFavorite } = promoFilm;
 
   if (!promoFilm) {

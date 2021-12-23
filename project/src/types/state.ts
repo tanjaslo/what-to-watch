@@ -1,7 +1,7 @@
 import { Film } from './film';
 import { Review } from './review';
 import { User } from './user';
-import { RootState } from '../store/reducers/root-reducer';
+import { RootState } from '../store/root-reducer';
 import { AuthorizationStatus } from '../const';
 
 export type AppReducer = {

@@ -1,14 +1,10 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { connect, ConnectedProps } from 'react-redux';
+import { connect, ConnectedProps, useSelector } from 'react-redux';
+import { getReviews } from '../../../store/reviews/selectors';
 import { fetchReviews } from '../../../store/api-actions';
 import { ThunkAppDispatch } from '../../../types/action';
-import { State } from '../../../types/state';
 import ReviewsList from '../../reviews-list/reviews-list';
-
-const mapStateToProps = ({ REVIEWS }: State) => ({
-  reviews: REVIEWS.reviews,
-});
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   loadReviews: (id: string) => {
@@ -16,15 +12,13 @@ const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   },
 });
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(null, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function FilmCardReviews({
-  reviews,
-  loadReviews,
-}: PropsFromRedux): JSX.Element {
+function FilmCardReviews({ loadReviews }: PropsFromRedux): JSX.Element {
   const { id }: { id: string } = useParams();
+  const reviews = useSelector(getReviews);
 
   useEffect(() => {
     loadReviews(id);
