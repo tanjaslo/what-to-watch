@@ -9,7 +9,6 @@ import { requireAuthorization } from './store/action';
 import { checkAuth, fetchFilms } from './store/api-actions';
 import { redirect } from './store/middlewares/redirect';
 import { createAPI } from './services/api';
-import { ThunkAppDispatch } from './types/action';
 import { AuthorizationStatus } from './const';
 import App from './components/app/app';
 
@@ -27,8 +26,8 @@ const store = configureStore({
     }).concat(redirect),
 });
 
-(store.dispatch as ThunkAppDispatch)(checkAuth());
-(store.dispatch as ThunkAppDispatch)(fetchFilms());
+store.dispatch(checkAuth());
+store.dispatch(fetchFilms());
 
 ReactDOM.render(
   <React.StrictMode>

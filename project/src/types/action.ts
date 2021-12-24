@@ -1,24 +1,9 @@
+import { Action } from 'redux';
 import { ThunkAction, ThunkDispatch } from '@reduxjs/toolkit';
 import {
   AxiosInstance,
 } from 'axios';
 import { State } from '../types/state';
-import {
-  changeGenre,
-  incrementStep,
-  loadFilms,
-  loadPromoFilm,
-  loadFilm,
-  loadMyList,
-  loadReviews,
-  loadSimilarFilms,
-  updateFilmStatus,
-  resetStepCount,
-  redirectToRoute,
-  requireAuthorization,
-  requireLogout,
-  setUserData,
-} from '../store/action';
 
 export enum ActionType {
   ChangeGenre = 'genre/changeGenre',
@@ -37,23 +22,6 @@ export enum ActionType {
   SetUserData = 'user/setUserData',
 }
 
-export type Actions =
-  ReturnType<typeof changeGenre> |
-  ReturnType<typeof incrementStep> |
-  ReturnType<typeof resetStepCount> |
-  ReturnType<typeof loadFilms> |
-  ReturnType<typeof loadPromoFilm> |
-  ReturnType<typeof loadFilm> |
-  ReturnType<typeof loadReviews> |
-  ReturnType<typeof loadSimilarFilms> |
-  ReturnType<typeof loadMyList> |
-  ReturnType<typeof updateFilmStatus> |
-  ReturnType<typeof redirectToRoute> |
-  ReturnType<typeof requireAuthorization> |
-  ReturnType<typeof requireLogout> |
-  ReturnType<typeof setUserData>;
+export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Action>;
 
-
-export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
-
-export type ThunkAppDispatch = ThunkDispatch<State, AxiosInstance, Actions>;
+export type ThunkAppDispatch = ThunkDispatch<State, AxiosInstance, Action>;

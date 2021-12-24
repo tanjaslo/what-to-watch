@@ -1,6 +1,5 @@
-import { Actions } from '../../types/action';
-import { Dispatch } from 'redux';
 import { connect, ConnectedProps, useSelector } from 'react-redux';
+import { Dispatch } from 'redux';
 import { changeGenre, resetStepCount } from '../../store/action';
 import { getActiveGenre, getStepCount } from '../../store/app/selectors';
 import { getFilms } from '../../store/films/selectors';
@@ -10,7 +9,7 @@ import CatalogSection from '../containers/catalog-section/catalog-section';
 import ShowMore from '../show-more/show-more';
 import { getFilteredFilms } from '../../utils';
 
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   onGenresItemClick(activeGenre: string) {
     dispatch(changeGenre(activeGenre));
     dispatch(resetStepCount());

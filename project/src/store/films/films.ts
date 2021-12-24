@@ -1,55 +1,37 @@
-import { Actions, ActionType } from '../../types/action';
-import { Film } from '../../types/film';
+import { createReducer } from '@reduxjs/toolkit';
 import { FilmsReducer } from '../../types/state';
+import { loadFilm, loadFilms, loadMyList, loadPromoFilm, loadSimilarFilms, updateFilmStatus } from '../action';
 
 const initialState: FilmsReducer = {
   films: [],
-  promoFilm: {} as Film,
-  currentFilm: {} as Film,
+  promoFilm: null,
+  currentFilm: null,
   myListFilms: [],
   similarFilms: [],
   isDataLoaded: false,
 };
 
-const filmsReducer = (state = initialState, action: Actions): FilmsReducer => {
-  const type = action.type;
-
-  switch (type) {
-    case ActionType.LoadFilm:
-      return {
-        ...state,
-        currentFilm: action.payload,
-      };
-    case ActionType.LoadFilms:
-      return {
-        ...state,
-        films: action.payload,
-        isDataLoaded: true,
-      };
-    case ActionType.LoadPromoFilm:
-      return {
-        ...state,
-        promoFilm: action.payload,
-      };
-    case ActionType.LoadMyList:
-      return {
-        ...state,
-        myListFilms: action.payload,
-      };
-    case ActionType.LoadSimilarFilms:
-      return {
-        ...state,
-        similarFilms: action.payload,
-      };
-    case ActionType.UpdateFilmStatus:
-      return {
-        ...state,
-        currentFilm: action.payload,
-        promoFilm: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+const filmsReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(loadFilms, (state, action) => {
+      state.films = action.payload;
+    })
+    .addCase(loadPromoFilm, (state, action) => {
+      state.promoFilm = action.payload;
+    })
+    .addCase(loadFilm, (state, action) => {
+      state.currentFilm = action.payload;
+    })
+    .addCase(loadSimilarFilms, (state, action) => {
+      state.similarFilms = action.payload;
+    })
+    .addCase(loadMyList, (state, action) => {
+      state.myListFilms = action.payload;
+    })
+    .addCase(updateFilmStatus, (state, action) => {
+      state.currentFilm = action.payload;
+      state.promoFilm = action.payload;
+    });
+});
 
 export { filmsReducer };

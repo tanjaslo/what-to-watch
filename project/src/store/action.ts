@@ -1,75 +1,25 @@
+import { createAction } from '@reduxjs/toolkit';
 import { ActionType } from '../types/action';
-import { Film } from '../types/film';
+import { Film, Genre } from '../types/film';
 import { Review } from '../types/review';
 import { User } from '../types/user';
 import { AppRoute, AuthorizationStatus } from '../const';
 
-export const changeGenre = (genre: string) => ({
-  type: ActionType.ChangeGenre,
-  payload: genre,
-} as const);
+export const changeGenre = createAction<Genre>(ActionType.ChangeGenre);
+export const incrementStep = createAction<number>(ActionType.IncrementStep);
+export const resetStepCount = createAction(ActionType.ResetStepCount);
 
-export const incrementStep = (stepCount: number) => ({
-  type: ActionType.IncrementStep,
-  payload: stepCount,
-} as const);
+export const loadFilm = createAction<Film>(ActionType.LoadFilm);
+export const loadPromoFilm = createAction<Film>(ActionType.LoadPromoFilm);
+export const loadFilms = createAction<Film[]>(ActionType.LoadFilms);
+export const loadSimilarFilms = createAction<Film[]>(ActionType.LoadSimilarFilms);
+export const loadMyList = createAction<Film[]>(ActionType.LoadMyList);
+export const updateFilmStatus = createAction<Film>(ActionType.UpdateFilmStatus);
 
-export const resetStepCount = () => ({
-  type: ActionType.ResetStepCount,
-} as const);
+export const loadReviews = createAction<Review[]>(ActionType.LoadReviews);
 
-export const loadFilms = (films: Film[]) => ({
-  type: ActionType.LoadFilms,
-  payload: films,
-} as const);
+export const redirectToRoute = createAction<AppRoute>(ActionType.RedirectToRoute);
 
-// export const loadFilms = createAction(ActionType.LoadFilms);
-
-export const loadFilm = (currentFilm: Film) => ({
-  type: ActionType.LoadFilm,
-  payload: currentFilm,
-} as const);
-
-export const loadPromoFilm = (promoFilm: Film) => ({
-  type: ActionType.LoadPromoFilm,
-  payload: promoFilm,
-} as const);
-
-export const loadReviews = (reviews: Review[]) => ({
-  type: ActionType.LoadReviews,
-  payload: reviews,
-} as const);
-
-export const loadSimilarFilms = (similarFilms: Film[]) => ({
-  type: ActionType.LoadSimilarFilms,
-  payload: similarFilms,
-} as const);
-
-export const loadMyList = (myList: Film[]) => ({
-  type: ActionType.LoadMyList,
-  payload: myList,
-} as const);
-
-export const updateFilmStatus = (currentFilm: Film) => ({
-  type: ActionType.UpdateFilmStatus,
-  payload: currentFilm,
-} as const);
-
-export const redirectToRoute = (url: AppRoute) => ({
-  type: ActionType.RedirectToRoute,
-  payload: url,
-} as const);
-
-export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
-  type: ActionType.RequireAuthorization,
-  payload: authStatus,
-} as const);
-
-export const requireLogout = () => ({
-  type: ActionType.RequireLogout,
-} as const);
-
-export const setUserData = (userData: User | null) => ({
-  type: ActionType.SetUserData,
-  payload: userData,
-} as const);
+export const requireAuthorization = createAction<AuthorizationStatus>(ActionType.RequireAuthorization);
+export const setUserData = createAction<User>(ActionType.SetUserData);
+export const requireLogout = createAction(ActionType.RequireLogout);
