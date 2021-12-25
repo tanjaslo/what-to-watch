@@ -1,34 +1,42 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { connect, ConnectedProps, useSelector } from 'react-redux';
-import { getCurrentFilm } from '../../store/films/selectors';
-import { ThunkAppDispatch } from '../../types/action';
-import { FilmId } from '../../types/film';
 import { fetchFilm } from '../../store/api-actions';
+import { getCurrentFilm } from '../../store/films/selectors';
 
-const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  loadFilm: (id: FilmId) => {
-    dispatch(fetchFilm(id));
-  },
-});
-
-const connector = connect(null, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function PlayerPage({ loadFilm }: PropsFromRedux): JSX.Element {
+function PlayerPage(): JSX.Element {
+  const dispatch = useDispatch();
   const { id }: { id: string } = useParams();
 
   useEffect(() => {
-    loadFilm(id);
-  }, [loadFilm, id]);
+    dispatch(fetchFilm(id));
+  }, [dispatch, id]);
 
   const currentFilm = useSelector(getCurrentFilm);
   const { previewImage, videoLink } = currentFilm;
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const video = videoRef.current;
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const onPlayButtonClick = () => {
+    if (!isPlaying) {
+      video?.play();
+      setIsPlaying(true);
+    } else {
+      video?.pause();
+      setIsPlaying(false);
+    }
+  };
 
   return (
     <div className="player">
-      <video src={videoLink} className="player__video" poster={previewImage} />
+      <video
+        className="player__video"
+        ref={videoRef}
+        src={videoLink}
+        poster={previewImage}
+      />
 
       <button type="button" className="player__exit">
         Exit
@@ -46,11 +54,19 @@ function PlayerPage({ loadFilm }: PropsFromRedux): JSX.Element {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play">
+          <button
+            type="button"
+            className="player__play"
+            onClick={onPlayButtonClick}
+          >
             <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
+              {isPlaying ? (
+                <use xlinkHref="#pause" />
+              ) : (
+                <use xlinkHref="#play-s" />
+              )}
             </svg>
-            <span>Play</span>
+            <span>{isPlaying ? 'Play' : 'Pause'}</span>
           </button>
           <div className="player__name">Transpotting</div>
 
@@ -66,5 +82,4 @@ function PlayerPage({ loadFilm }: PropsFromRedux): JSX.Element {
   );
 }
 
-export { PlayerPage };
-export default connector(PlayerPage);
+export default PlayerPage;

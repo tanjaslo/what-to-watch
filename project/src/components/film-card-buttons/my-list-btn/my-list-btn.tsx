@@ -1,35 +1,25 @@
-import { connect, ConnectedProps } from 'react-redux';
-import { ThunkAppDispatch } from '../../../types/action';
 import { FilmId } from '../../../types/film';
 import { setFilmStatus } from '../../../store/api-actions';
-import { FavoriteStatus } from '../../../const';
+import { FavoriteStatus, MyListButtonType } from '../../../const';
+import { useDispatch } from 'react-redux';
 
 type MyListBtnProps = {
   id: FilmId;
   isFavorite: boolean;
 };
 
-const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  toggleMyListBtn(id: FilmId, status: FavoriteStatus) {
-    dispatch(setFilmStatus(id, status));
-  },
-});
+function MyListBtn({ id, isFavorite }: MyListBtnProps): JSX.Element {
+  const dispatch = useDispatch();
 
-const connector = connect(null, mapDispatchToProps);
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = MyListBtnProps & PropsFromRedux;
-
-function MyListBtn({
-  id,
-  isFavorite,
-  toggleMyListBtn,
-}: ConnectedComponentProps): JSX.Element {
   const onBtnClickHandler = () => {
-    toggleMyListBtn(
-      id,
-      isFavorite ? FavoriteStatus.False : FavoriteStatus.True,
-    );
+    const status = isFavorite ? FavoriteStatus.False : FavoriteStatus.True;
+    dispatch(setFilmStatus(id, status));
   };
+
+  const myListBtn = isFavorite
+    ? MyListButtonType.IN_LIST
+    : MyListButtonType.ADD;
+  const { imgWidth, imgHeight, viewBox, use } = myListBtn;
 
   return (
     <button
@@ -37,13 +27,12 @@ function MyListBtn({
       type="button"
       onClick={onBtnClickHandler}
     >
-      <svg viewBox="0 0 19 20" width="19" height="20">
-        {isFavorite ? <use xlinkHref="#in-list" /> : <use xlinkHref="#add" />}
+      <svg viewBox={viewBox} width={imgWidth} height={imgHeight}>
+        <use xlinkHref={use} />
       </svg>
       <span>My list</span>
     </button>
   );
 }
 
-export default connector(MyListBtn);
-export { MyListBtn };
+export default MyListBtn;

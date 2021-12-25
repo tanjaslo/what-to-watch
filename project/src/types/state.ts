@@ -11,8 +11,8 @@ export type AppReducer = {
 
 export type FilmsReducer = {
   films: Film[],
-  currentFilm: Film | null,
-  promoFilm: Film | null,
+  currentFilm: Film,
+  promoFilm: Film,
   myListFilms: Film[],
   similarFilms: Film[],
   isDataLoaded: boolean,

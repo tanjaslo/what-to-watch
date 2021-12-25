@@ -21,5 +21,5 @@ export const loadReviews = createAction<Review[]>(ActionType.LoadReviews);
 export const redirectToRoute = createAction<AppRoute>(ActionType.RedirectToRoute);
 
 export const requireAuthorization = createAction<AuthorizationStatus>(ActionType.RequireAuthorization);
-export const setUserData = createAction<User>(ActionType.SetUserData);
+export const setUserData = createAction<User | null>(ActionType.SetUserData);
 export const requireLogout = createAction(ActionType.RequireLogout);

@@ -1,5 +1,4 @@
-import { connect, ConnectedProps, useSelector } from 'react-redux';
-import { Dispatch } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { changeGenre, resetStepCount } from '../../store/action';
 import { getActiveGenre, getStepCount } from '../../store/app/selectors';
 import { getFilms } from '../../store/films/selectors';
@@ -9,18 +8,8 @@ import CatalogSection from '../containers/catalog-section/catalog-section';
 import ShowMore from '../show-more/show-more';
 import { getFilteredFilms } from '../../utils';
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onGenresItemClick(activeGenre: string) {
-    dispatch(changeGenre(activeGenre));
-    dispatch(resetStepCount());
-  },
-});
-
-const connector = connect(null, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function Catalog({ onGenresItemClick }: PropsFromRedux): JSX.Element {
+function Catalog(): JSX.Element {
+  const dispatch = useDispatch();
   const activeGenre = useSelector(getActiveGenre);
   const films = useSelector(getFilms);
   const stepCount = useSelector(getStepCount);
@@ -28,6 +17,11 @@ function Catalog({ onGenresItemClick }: PropsFromRedux): JSX.Element {
   const filmsByGenre = getFilteredFilms(films, activeGenre);
   const filmsToRender = filmsByGenre.slice(0, stepCount);
   const isButtonVisible = filmsByGenre.length > filmsToRender.length;
+
+  const onGenresItemClick = (genre: string) => {
+    dispatch(changeGenre(genre));
+    dispatch(resetStepCount());
+  };
 
   return (
     <CatalogSection>
@@ -38,5 +32,4 @@ function Catalog({ onGenresItemClick }: PropsFromRedux): JSX.Element {
   );
 }
 
-export { Catalog };
-export default connector(Catalog);
+export default Catalog;
