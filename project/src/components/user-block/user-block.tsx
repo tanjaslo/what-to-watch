@@ -1,32 +1,19 @@
-import { connect, ConnectedProps, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getUser } from '../../store/user/selectors';
-import { ThunkAppDispatch } from '../../types/action';
 import { fetchMyList, logout } from '../../store/api-actions';
 import { AppRoute } from '../../const';
 
-const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  onAvatarClick() {
-    dispatch(fetchMyList());
-  },
-  onLogOut() {
-    dispatch(logout());
-  },
-});
-
-const connector = connect(null, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function UserBlock({ onAvatarClick, onLogOut }: PropsFromRedux): JSX.Element {
+function UserBlock(): JSX.Element {
+  const dispatch = useDispatch();
   const user = useSelector(getUser);
 
-  const handleLogout = () => {
-    onLogOut();
+  const logoutHandler = () => {
+    dispatch(logout());
   };
 
-  const handleAvatarClick = () => {
-    onAvatarClick();
+  const avatarClickHandler = () => {
+    dispatch(fetchMyList());
   };
 
   if (user) {
@@ -34,7 +21,7 @@ function UserBlock({ onAvatarClick, onLogOut }: PropsFromRedux): JSX.Element {
       <ul className="user-block">
         <li className="user-block__item">
           <Link to={AppRoute.MyList}>
-            <div className="user-block__avatar" onClick={handleAvatarClick}>
+            <div className="user-block__avatar" onClick={avatarClickHandler}>
               <img
                 src={user.avatarUrl}
                 alt="User avatar"
@@ -45,7 +32,7 @@ function UserBlock({ onAvatarClick, onLogOut }: PropsFromRedux): JSX.Element {
           </Link>
         </li>
         <li className="user-block__item">
-          <div className="user-block__link" onClick={handleLogout}>
+          <div className="user-block__link" onClick={logoutHandler}>
             Sign out
           </div>
         </li>
@@ -62,5 +49,4 @@ function UserBlock({ onAvatarClick, onLogOut }: PropsFromRedux): JSX.Element {
   }
 }
 
-export { UserBlock };
-export default connector(UserBlock);
+export default UserBlock;

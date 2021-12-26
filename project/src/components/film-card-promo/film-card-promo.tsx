@@ -1,28 +1,19 @@
 import { useEffect } from 'react';
-import { connect, ConnectedProps, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getpromoFilm } from '../../store/films/selectors';
 import { fetchPromoFilm } from '../../store/api-actions';
-import { ThunkAppDispatch } from '../../types/action';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import PageHeader from '../containers/page-header/page-header';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 
-const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  loadPromoFilm: () => {
-    dispatch(fetchPromoFilm());
-  },
-});
-
-const connector = connect(null, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function FilmCardPromo({ loadPromoFilm }: PropsFromRedux): JSX.Element {
-  useEffect(() => {
-    loadPromoFilm();
-  }, [loadPromoFilm]);
-
+function FilmCardPromo(): JSX.Element {
+  const dispatch = useDispatch();
   const promoFilm = useSelector(getpromoFilm);
+
+  useEffect(() => {
+    dispatch(fetchPromoFilm());
+  }, [dispatch]);
+
   const { id, name, posterImage, genre, released, isFavorite } = promoFilm;
 
   if (!promoFilm) {
@@ -57,5 +48,4 @@ function FilmCardPromo({ loadPromoFilm }: PropsFromRedux): JSX.Element {
   );
 }
 
-export { FilmCardPromo };
-export default connector(FilmCardPromo);
+export default FilmCardPromo;

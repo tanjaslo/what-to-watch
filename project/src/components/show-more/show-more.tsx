@@ -1,21 +1,12 @@
-import { Dispatch } from 'redux';
-import { connect, ConnectedProps } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { incrementStep } from '../../store/action';
 import { STEP_COUNT } from '../../const';
 
-type PropsFromRedux = ConnectedProps<typeof connector>;
+function ShowMore(): JSX.Element {
+  const dispatch = useDispatch();
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onIncrementStep(stepCount: number) {
-    dispatch(incrementStep(stepCount));
-  },
-});
-
-const connector = connect(null, mapDispatchToProps);
-
-function ShowMore({ onIncrementStep }: PropsFromRedux): JSX.Element {
-  const onShowMoreBtnClick = () => {
-    onIncrementStep(STEP_COUNT);
+  const showMoreBtnClickHandler = () => {
+    dispatch(incrementStep(STEP_COUNT));
   };
 
   return (
@@ -23,7 +14,7 @@ function ShowMore({ onIncrementStep }: PropsFromRedux): JSX.Element {
       <button
         className="catalog__button"
         type="button"
-        onClick={onShowMoreBtnClick}
+        onClick={showMoreBtnClickHandler}
       >
         Show more
       </button>
@@ -31,5 +22,4 @@ function ShowMore({ onIncrementStep }: PropsFromRedux): JSX.Element {
   );
 }
 
-export { ShowMore };
-export default connector(ShowMore);
+export default ShowMore;

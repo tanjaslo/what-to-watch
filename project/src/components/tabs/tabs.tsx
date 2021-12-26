@@ -27,6 +27,7 @@ const renderTabContent = (tabItem: string, film: Film) => {
 
 function Tabs({ film }: TabListProps): JSX.Element {
   const [activeTab, setActiveTab] = useState<string>(TabItem.OVERVIEW);
+  const tabsList = Object.values(TabItem);
 
   const INITIAL_CLASSNAME = 'film-nav__item';
 
@@ -34,9 +35,7 @@ function Tabs({ film }: TabListProps): JSX.Element {
     'film-nav__item--active': activeTab,
   });
 
-  const tabsList = Object.values(TabItem);
-
-  const handleTabItemClick = (evt: SyntheticEvent<HTMLElement>) => {
+  const tabItemClickHandler = (evt: SyntheticEvent<HTMLElement>) => {
     evt.preventDefault();
     const newActiveTab = evt.currentTarget.dataset.value as string;
     setActiveTab(newActiveTab);
@@ -60,7 +59,7 @@ function Tabs({ film }: TabListProps): JSX.Element {
                   className="film-nav__link"
                   to={`#${item}`}
                   data-value={item}
-                  onClick={handleTabItemClick}
+                  onClick={tabItemClickHandler}
                 >
                   {tabName}
                 </Link>

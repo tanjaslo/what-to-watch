@@ -7,19 +7,19 @@ import { getCurrentFilm } from '../../store/films/selectors';
 function PlayerPage(): JSX.Element {
   const dispatch = useDispatch();
   const { id }: { id: string } = useParams();
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const currentFilm = useSelector(getCurrentFilm);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const video = videoRef.current;
 
   useEffect(() => {
     dispatch(fetchFilm(id));
   }, [dispatch, id]);
 
-  const currentFilm = useSelector(getCurrentFilm);
   const { previewImage, videoLink } = currentFilm;
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const video = videoRef.current;
 
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const onPlayButtonClick = () => {
+  const playButtonClickHandler = () => {
     if (!isPlaying) {
       video?.play();
       setIsPlaying(true);
@@ -57,7 +57,7 @@ function PlayerPage(): JSX.Element {
           <button
             type="button"
             className="player__play"
-            onClick={onPlayButtonClick}
+            onClick={playButtonClickHandler}
           >
             <svg viewBox="0 0 19 19" width="19" height="19">
               {isPlaying ? (

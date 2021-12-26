@@ -23,7 +23,7 @@ function GenresList({ onGenresItemClick }: GenresListProps): JSX.Element {
   const genres = getUniqueGenres(films); //
   const genresList = getGenresList(DEFAULT_GENRE, genres);
 
-  const handleGenresItemClick =
+  const genresItemClickHandler =
     (newActiveGenre: string) => (evt: SyntheticEvent<HTMLElement>) => {
       evt.preventDefault();
       onGenresItemClick(newActiveGenre);
@@ -41,7 +41,7 @@ function GenresList({ onGenresItemClick }: GenresListProps): JSX.Element {
           <a
             href="/"
             className="catalog__genres-link"
-            onClick={handleGenresItemClick(genre)}
+            onClick={genresItemClickHandler(genre)}
           >
             {genre}
           </a>

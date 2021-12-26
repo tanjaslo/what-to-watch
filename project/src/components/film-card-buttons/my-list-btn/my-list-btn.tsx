@@ -11,7 +11,7 @@ type MyListBtnProps = {
 function MyListBtn({ id, isFavorite }: MyListBtnProps): JSX.Element {
   const dispatch = useDispatch();
 
-  const onBtnClickHandler = () => {
+  const myListBtnClickHandler = () => {
     const status = isFavorite ? FavoriteStatus.False : FavoriteStatus.True;
     dispatch(setFilmStatus(id, status));
   };
@@ -25,7 +25,7 @@ function MyListBtn({ id, isFavorite }: MyListBtnProps): JSX.Element {
     <button
       className="btn btn--list film-card__button"
       type="button"
-      onClick={onBtnClickHandler}
+      onClick={myListBtnClickHandler}
     >
       <svg viewBox={viewBox} width={imgWidth} height={imgHeight}>
         <use xlinkHref={use} />
