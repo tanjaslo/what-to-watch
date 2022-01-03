@@ -2,6 +2,8 @@ import dayjs from 'dayjs';
 import { AuthorizationStatus, DEFAULT_GENRE } from './const';
 import { Film } from './types/film';
 
+export const uppercaseFirstLetter = (item: string): string => item.replace(item[0], item[0].toUpperCase());
+
 export const formattedDate = (date: string): string =>
   dayjs(date).format('YYYY-MM-DD');
 

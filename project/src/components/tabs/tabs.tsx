@@ -3,6 +3,7 @@ import { SyntheticEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Film } from '../../types/film';
 import { TabItem } from '../../const';
+import { uppercaseFirstLetter } from '../../utils';
 import FilmCardOverview from './film-card-overview/film-card-overview';
 import FilmCardReviews from './film-card-reviews/film-card-reviews';
 import FilmCardDetails from './film-card-details/film-card-details';
@@ -46,7 +47,7 @@ function Tabs({ film }: TabListProps): JSX.Element {
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
           {tabsList.map((item, i) => {
-            const tabName = `${item[0].toUpperCase()}${item.slice(1)}`;
+            const tabName = uppercaseFirstLetter(item);
 
             return (
               <li
