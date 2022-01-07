@@ -1,6 +1,7 @@
 import { FilmId } from '../../types/film';
 import AddReviewLink from '../add-review-link/add-review-link';
 import MyListBtn from './my-list-btn/my-list-btn';
+import PlayBtn from './play-btn/play-btn';
 
 type FilmCardButtonsProps = {
   hasAddReviewLink?: boolean;
@@ -15,12 +16,7 @@ function FilmCardButtons({
 }: FilmCardButtonsProps): JSX.Element {
   return (
     <div className="film-card__buttons">
-      <button className="btn btn--play film-card__button" type="button">
-        <svg viewBox="0 0 19 19" width="19" height="19">
-          <use xlinkHref="#play-s"></use>
-        </svg>
-        <span>Play</span>
-      </button>
+      <PlayBtn id={id} />
       <MyListBtn id={id} isFavorite={isFavorite} />
       {hasAddReviewLink && <AddReviewLink id={id} />}
     </div>
