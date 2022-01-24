@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getpromoFilm } from '../../store/films/selectors';
 import { fetchPromoFilm } from '../../store/api-actions';
 import FilmCardBg from '../film-card-bg/film-card-bg';
-import PageHeader from '../containers/page-header/page-header';
+import PageHeader from '../ui/page-header/page-header';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 
 function FilmCardPromo(): JSX.Element {

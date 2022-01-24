@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Film } from '../../types/film';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import FilmCardPoster from '../film-card-poster/film-card-poster';
-import PageHeader from '../containers/page-header/page-header';
+import PageHeader from '../ui/page-header/page-header';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 
 type FilmCardHeaderProps = {

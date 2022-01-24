@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import PageHeader from '../../components/containers/page-header/page-header';
-import PageFooter from '../../components/page-footer/page-footer';
+import PageHeader from '../../components/ui/page-header/page-header';
+import PageFooter from '../../components/ui/page-footer/page-footer';
 
 function NotFoundPage(): JSX.Element {
   return (

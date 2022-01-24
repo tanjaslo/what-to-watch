@@ -4,7 +4,7 @@ import { getActiveGenre, getStepCount } from '../../store/app/selectors';
 import { getFilms } from '../../store/films/selectors';
 import FilmsList from '../films-list/films-list';
 import GenresList from '../genres-list/genres-list';
-import CatalogSection from '../containers/catalog-section/catalog-section';
+import CatalogSection from '../ui/catalog-section/catalog-section';
 import ShowMore from '../show-more/show-more';
 import { getFilteredFilms } from '../../utils';
 

@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyFilms } from '../../store/films/selectors';
 import { fetchMyList } from '../../store/api-actions';
-import PageHeader from '../../components/containers/page-header/page-header';
-import PageFooter from '../../components/page-footer/page-footer';
-import CatalogSection from '../../components/containers/catalog-section/catalog-section';
+import PageHeader from '../../components/ui/page-header/page-header';
+import PageFooter from '../../components/ui/page-footer/page-footer';
+import CatalogSection from '../../components/ui/catalog-section/catalog-section';
 import FilmsList from '../../components/films-list/films-list';
 
 function MyListPage(): JSX.Element {

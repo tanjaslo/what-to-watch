@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentFilm } from '../../store/films/selectors';
 import FilmCardBg from '../film-card-bg/film-card-bg';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
-import FilmCardFullSection from '../containers/film-card-full-section/film-card-full-section';
+import FilmCardFullSection from '../ui/film-card-full-section/film-card-full-section';
 import FilmCardPoster from '../film-card-poster/film-card-poster';
-import PageHeader from '../containers/page-header/page-header';
+import PageHeader from '../ui/page-header/page-header';
 import Tabs from '../tabs/tabs';
 import { fetchFilm } from '../../store/api-actions';
 

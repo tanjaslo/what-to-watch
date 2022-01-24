@@ -3,8 +3,6 @@ import { Fragment, ChangeEvent, useState } from 'react';
 const MAX_RATING = 10;
 
 function RatingStars(): JSX.Element {
-  //const ratings = new Array(MAX_RATING).fill(null).map((item, i) => i + 1).reverse();
-  //const ratings = Array.from({length: MAX_RATING}, (_, i) => i + 1).reverse();
   const [rating, setRating] = useState<number>(0);
 
   const handleRatingChange = ({ target }: ChangeEvent<HTMLInputElement>) => {

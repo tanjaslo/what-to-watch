@@ -1,4 +1,4 @@
-export const BACKEND_URL = 'https://8.react.pages.academy/wtw';
+export const BACKEND_URL = 'https://7.react.pages.academy/wtw';
 export const REQUEST_TIMEOUT = 5000;
 export const AUTH_TOKEN_KEY_NAME = 'wtw-autorization-token';
 

@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../../const';
 
 type LogoProps = {
-  isLight?: boolean,
+  isLight?: boolean;
 };
 
-function Logo({isLight}: LogoProps): JSX.Element {
+function Logo({ isLight }: LogoProps): JSX.Element {
   return (
     <div className="logo">
       <Link
